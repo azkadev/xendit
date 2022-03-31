@@ -1,7 +1,7 @@
-import 'dart:async';
+import 'package:xendit/xendit.dart';
 
-void main() {
-  Timer.periodic(Duration(seconds: 10), (timer) {
-    print(timer.tick.toString());
-  });
+void main() async {
+  Xendit xendit = Xendit("apiKey");
+  var result = await xendit.getPaymentChannels();
+  print(result);
 }
