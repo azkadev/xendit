@@ -1,6 +1,6 @@
 name: xendit
 description: xendit gateway payment.
-version: 0.0.0
+version: 0.0.1
 homepage: https://github.com/azkadev/telegram_client/tree/main/dart/telegram_client/docs
 repository: https://github.com/azkadev/telegram_client/tree/main/dart/telegram_client
 issue_tracker: https://github.com/azkadev/telegram_client/issues
@@ -9,6 +9,6 @@ environment:
   sdk: '>=2.16.0 <3.0.0'
 
 dev_dependencies:
-  lints: ^1.0.0
+  lints: ^2.0.0
 dependencies: 
   http: ^0.13.4
