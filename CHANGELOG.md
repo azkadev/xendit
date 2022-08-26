@@ -11,3 +11,6 @@
 
 ## 0.0.3
 - add query parameters
+
+## 0.0.4
+- change style code and change readme
