@@ -22,7 +22,11 @@ class Xendit {
     parameters ??= {};
     headers ??= {};
     var url = "https://api.xendit.co/$method";
-    Map<String, String> headersOption = {"Authorization": "Basic ${base64.encode(utf8.encode("$apiKey:"))}", "Content-Type": 'application/json', ...headers};
+    Map<String, String> headersOption = {
+      "Authorization": "Basic ${base64.encode(utf8.encode("$apiKey:"))}",
+      "Content-Type": 'application/json',
+      ...headers,
+    };
     late Map json_respond = {"status_code": 200, "status_bool": true, "result": {}};
     late Response result;
     Uri urlApi = Uri.parse(url).replace(queryParameters: queryParameters);
