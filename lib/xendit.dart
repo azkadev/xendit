@@ -209,6 +209,86 @@ class Xendit {
       methodRequest: "get",
     );
   }
+
+  Future<Map> createAccount({
+    required String email,
+    required String type,
+    required String business_name,
+  }) async {
+    return await request("v2/accounts", methodRequest: "post", parameters: {
+      "email": email,
+      "type": type,
+      "public_profile": {
+        "business_name": business_name,
+      },
+    });
+  }
+
+  Future<Map> getAccountById({
+    required String id,
+  }) async {
+    return await request(
+      "v2/accounts/$id",
+      methodRequest: "get",
+    );
+  }
+
+  Future<Map> updateAccount({
+    required String id,
+    required String email,
+    required String business_name,
+  }) async {
+    return await request("v2/accounts/$id", methodRequest: "patch", parameters: {
+      "email": email,
+      "public_profile": {
+        "business_name": business_name,
+      },
+    });
+  }
+
+  Future<Map> transfer({
+    required String reference,
+    required int amount,
+    required String source_user_id,
+    required String destination_user_id,
+  }) async {
+    return await request("transfers", methodRequest: "post", parameters: {
+      "reference": reference,
+      "amount": amount,
+      "source_user_id": source_user_id,
+      "destination_user_id": destination_user_id,
+    });
+  }
+
+  Future<Map> getBalance({String forUserId = "", String account_type = "CASH"}) async {
+    return await request("balance", methodRequest: "get", queryParameters: {
+      "account_type": account_type,
+    }, headers: {
+      "for-user-id": forUserId
+    });
+  }
+
+  Future<Map> getTransfer({
+    required String reference,
+  }) async {
+    return await request("transfers/reference=$reference", methodRequest: "get");
+  }
+
+  Future<Map> createFeeRule({
+    required String name,
+    required String description,
+    required String unit,
+    required num amount,
+    required String currency,
+  }) async {
+    return await request("fee_rules", methodRequest: "pst", parameters: {
+      "name": name,
+      "description": description,
+      "routes": [
+        {"unit": unit, "amount": amount, "currency": currency}
+      ]
+    });
+  }
 }
 
 extension MapDeleteValueNull on Map {
