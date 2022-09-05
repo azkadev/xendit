@@ -14,3 +14,9 @@
 
 ## 0.0.4
 - change style code and change readme
+
+## 0.0.5
+- update
+
+## 0.0.6
+- update docs

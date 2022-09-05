@@ -57,9 +57,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///home/hexaminate/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4",
+      "rootUri": "file:///home/hexaminate/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-2.0.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "flutter_test",
@@ -69,9 +69,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///home/hexaminate/development/flutter/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1",
+      "rootUri": "file:///home/hexaminate/development/flutter/.pub-cache/hosted/pub.dartlang.org/lints-2.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "matcher",
@@ -149,10 +149,10 @@
       "name": "example",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-08-25T21:44:31.723143Z",
+  "generated": "2022-09-05T22:34:57.825442Z",
   "generator": "pub",
-  "generatorVersion": "2.17.5"
+  "generatorVersion": "2.17.6"
 }

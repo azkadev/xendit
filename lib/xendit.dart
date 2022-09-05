@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, empty_catches
 
 import 'dart:convert';
 
@@ -27,15 +27,21 @@ class Xendit {
       "Content-Type": 'application/json',
       ...headers,
     };
-    late Map json_respond = {"status_code": 200, "status_bool": true, "result": {}};
+    late Map json_respond = {
+      "status_code": 200,
+      "status_bool": true,
+      "result": {}
+    };
     late Response result;
     Uri urlApi = Uri.parse(url).replace(queryParameters: queryParameters);
     if (methodRequest == "get") {
       result = await get(urlApi, headers: headersOption);
     } else if (methodRequest == "post") {
-      result = await post(urlApi, headers: headersOption, body: json.encode(parameters));
+      result = await post(urlApi,
+          headers: headersOption, body: json.encode(parameters));
     } else if (methodRequest == "patch") {
-      result = await patch(urlApi, headers: headersOption, body: json.encode(parameters));
+      result = await patch(urlApi,
+          headers: headersOption, body: json.encode(parameters));
     } else {
       result = await get(urlApi, headers: headersOption);
     }
@@ -48,6 +54,7 @@ class Xendit {
     return json_respond;
   }
 
+  /// jika kamu ingin membuat invoice tambahkan ini ya
   Map createIinvoicesParameters({
     required String external_id,
     required int amount,
@@ -97,9 +104,12 @@ class Xendit {
   }
 
   /// invoices
-  Future<Map> createInvoices({String forUserId = "", String withFeeRule = "", required Map parameters}) async {
+  Future<Map> createInvoices(
+      {String forUserId = "",
+      String withFeeRule = "",
+      required Map parameters}) async {
     return await request(
-      "v2/invoices?",
+      "v2/invoices",
       headers: {
         "for-user-id": forUserId,
         "with-fee-rule": withFeeRule,
@@ -109,6 +119,7 @@ class Xendit {
     );
   }
 
+  /// mengambil invoice dari id
   Future<Map> getInvoicesById({
     String forUserId = "",
     required String invoiceId,
@@ -122,6 +133,7 @@ class Xendit {
     );
   }
 
+  /// mengambil invoice dari external id
   Future<Map> getInvoicesByExternalId({
     String forUserId = "",
     required String external_id,
@@ -138,6 +150,7 @@ class Xendit {
     );
   }
 
+  /// untuk mengambil invoices
   Future<Map> getsInvoices({
     String forUserId = "",
     required String invoiceId,
@@ -154,7 +167,9 @@ class Xendit {
     );
   }
 
-  Future<Map> expireInvoices({String forUserId = "", required String invoiceId}) async {
+  /// untuk membuat invoice expired
+  Future<Map> expireInvoices(
+      {String forUserId = "", required String invoiceId}) async {
     return await request(
       "v2/invoices/$invoiceId/expire!",
       headers: {
@@ -164,6 +179,7 @@ class Xendit {
     );
   }
 
+  /// jika anda ingin menarik uang anda bisa menggunakan ini
   Future<Map> createPayout({
     String forUserId = "",
     required String external_id,
@@ -184,6 +200,7 @@ class Xendit {
     );
   }
 
+  /// gunakan ini agar bisa menarik uang
   Future<Map> getPayout({
     String forUserId = "",
     required String id,
@@ -197,6 +214,7 @@ class Xendit {
     );
   }
 
+  /// ddd
   Future<Map> voidPayout({
     String forUserId = "",
     required String id,
@@ -210,9 +228,10 @@ class Xendit {
     );
   }
 
+  /// bikin akun untuk xentplatform
   Future<Map> createAccount({
     required String email,
-    required String type,
+    String type = "OWNED",
     required String business_name,
   }) async {
     return await request("v2/accounts", methodRequest: "post", parameters: {
@@ -224,6 +243,7 @@ class Xendit {
     });
   }
 
+  /// mengambil account dari id
   Future<Map> getAccountById({
     required String id,
   }) async {
@@ -233,19 +253,23 @@ class Xendit {
     );
   }
 
+  /// meng update account xen platform
   Future<Map> updateAccount({
     required String id,
     required String email,
     required String business_name,
   }) async {
-    return await request("v2/accounts/$id", methodRequest: "patch", parameters: {
-      "email": email,
-      "public_profile": {
-        "business_name": business_name,
-      },
-    });
+    return await request("v2/accounts/$id",
+        methodRequest: "patch",
+        parameters: {
+          "email": email,
+          "public_profile": {
+            "business_name": business_name,
+          },
+        });
   }
 
+  /// transfer saldo ke orang lain
   Future<Map> transfer({
     required String reference,
     required int amount,
@@ -260,7 +284,9 @@ class Xendit {
     });
   }
 
-  Future<Map> getBalance({String forUserId = "", String account_type = "CASH"}) async {
+  /// untuk check saldo
+  Future<Map> getBalance(
+      {String forUserId = "", String account_type = "CASH"}) async {
     return await request("balance", methodRequest: "get", queryParameters: {
       "account_type": account_type,
     }, headers: {
@@ -268,12 +294,15 @@ class Xendit {
     });
   }
 
+  /// untuk check transfer
   Future<Map> getTransfer({
     required String reference,
   }) async {
-    return await request("transfers/reference=$reference", methodRequest: "get");
+    return await request("transfers/reference=$reference",
+        methodRequest: "get");
   }
 
+  /// untuk membuat rules
   Future<Map> createFeeRule({
     required String name,
     required String description,
@@ -281,7 +310,7 @@ class Xendit {
     required num amount,
     required String currency,
   }) async {
-    return await request("fee_rules", methodRequest: "pst", parameters: {
+    return await request("fee_rules", methodRequest: "post", parameters: {
       "name": name,
       "description": description,
       "routes": [
@@ -292,6 +321,7 @@ class Xendit {
 }
 
 extension MapDeleteValueNull on Map {
+  /// delete value nulls on map
   void removeValueNulls() {
     removeWhere((key, value) {
       try {

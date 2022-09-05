@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/home/hexaminate/development/flutter"
-export "FLUTTER_APPLICATION_PATH=/home/hexaminate/Downloads/xendit-0.0.1/example"
+export "FLUTTER_APPLICATION_PATH=/home/hexaminate/Documents/HEXAMINATE/app/galaxeus/packages/dart/xendit/example"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
