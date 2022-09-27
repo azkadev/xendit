@@ -66,7 +66,7 @@ class XenPlatformTransferReference {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = Map<String, dynamic>();
+        final Map<String, dynamic> data = <String, dynamic>{};
         data['created'] = created;
         data['transfer_id'] = transferid;
         data['reference'] = reference;
