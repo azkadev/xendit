@@ -1,8 +1,19 @@
 // ignore_for_file: non_constant_identifier_names, empty_catches
 
+library xendit;
+
 import 'dart:convert';
 
 import 'package:http/http.dart';
+
+part 'src/object/balance.dart';
+part 'src/object/expire_invoice.dart';
+part 'src/object/get_invoice.dart';
+part 'src/object/invoice.dart';
+part 'src/object/payout.dart';
+part 'src/object/xenplatform_account.dart';
+part 'src/object/xentplatform_fee_rule.dart';
+part 'src/object/xentplatform_transfer.dart';
 
 /// xendit helo world heo gais
 class Xendit {
@@ -27,35 +38,36 @@ class Xendit {
       "Content-Type": 'application/json',
       ...headers,
     };
-    late Map json_respond = {
-      "status_code": 200,
-      "status_bool": true,
-      "result": {}
-    };
+    late Map json_respond = {"status_code": 200, "status_bool": true, "result": {}};
     late Response result;
     Uri urlApi = Uri.parse(url).replace(queryParameters: queryParameters);
     if (methodRequest == "get") {
       result = await get(urlApi, headers: headersOption);
     } else if (methodRequest == "post") {
-      result = await post(urlApi,
-          headers: headersOption, body: json.encode(parameters));
+      result = await post(urlApi, headers: headersOption, body: json.encode(parameters));
     } else if (methodRequest == "patch") {
-      result = await patch(urlApi,
-          headers: headersOption, body: json.encode(parameters));
+      result = await patch(urlApi, headers: headersOption, body: json.encode(parameters));
     } else {
       result = await get(urlApi, headers: headersOption);
     }
-    json_respond["status_code"] = result.statusCode;
-    try {
-      json_respond["result"] = json.decode(result.body);
-    } catch (e) {
-      json_respond["result"] = result.body;
+    late Map body = {
+      "@type": "ok",
+    };
+    if (result.statusCode != 200) {
+      body["@type"] = "error";
     }
-    return json_respond;
+    try {
+      body.addAll(json.decode(result.body));
+    } catch (e) {
+      body.addAll({"message": "$e"});
+    }
+    return body;
   }
 
-  /// jika kamu ingin membuat invoice tambahkan ini ya
-  Map createIinvoicesParameters({
+  /// invoices
+  Future<InvoiceResponse> createInvoices({
+    String forUserId = "",
+    String withFeeRule = "",
     required String external_id,
     required int amount,
     String? description,
@@ -76,7 +88,7 @@ class Xendit {
     List? items,
     List? fees,
     bool? should_authenticate_credit_card,
-  }) {
+  }) async {
     late Map jsonData = {
       "external_id": external_id,
       "amount": amount,
@@ -100,37 +112,38 @@ class Xendit {
       "should_authenticate_credit_card": should_authenticate_credit_card,
     };
     jsonData.removeValueNulls();
-    return jsonData;
-  }
-
-  /// invoices
-  Future<Map> createInvoices(
-      {String forUserId = "",
-      String withFeeRule = "",
-      required Map parameters}) async {
-    return await request(
+    Map res = await request(
       "v2/invoices",
       headers: {
         "for-user-id": forUserId,
         "with-fee-rule": withFeeRule,
       },
       methodRequest: "post",
-      parameters: parameters,
+      parameters: jsonData,
     );
+
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return InvoiceResponse.fromJson(res.cast<String, dynamic>());
   }
 
   /// mengambil invoice dari id
-  Future<Map> getInvoicesById({
+  Future<GetInvoiceResponse> getInvoicesById({
     String forUserId = "",
     required String invoiceId,
   }) async {
-    return await request(
+    Map res = await request(
       "v2/invoices/$invoiceId",
       headers: {
         "for-user-id": forUserId,
       },
       methodRequest: "get",
     );
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return GetInvoiceResponse.fromJson(res.cast<String, dynamic>());
   }
 
   /// mengambil invoice dari external id
@@ -168,25 +181,28 @@ class Xendit {
   }
 
   /// untuk membuat invoice expired
-  Future<Map> expireInvoices(
-      {String forUserId = "", required String invoiceId}) async {
-    return await request(
+  Future<ExpireInvoiceResponse> expireInvoices({String forUserId = "", required String invoiceId}) async {
+    Map res = await request(
       "v2/invoices/$invoiceId/expire!",
       headers: {
         "for-user-id": forUserId,
       },
       methodRequest: "get",
     );
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return ExpireInvoiceResponse.fromJson(res.cast<String, dynamic>());
   }
 
   /// jika anda ingin menarik uang anda bisa menggunakan ini
-  Future<Map> createPayout({
+  Future<PayOutResponse> createPayout({
     String forUserId = "",
     required String external_id,
     required int amount,
     required String email,
   }) async {
-    return await request(
+    Map res = await request(
       "payouts",
       headers: {
         "for-user-id": forUserId,
@@ -198,125 +214,162 @@ class Xendit {
         "email": email,
       },
     );
+
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return PayOutResponse.fromJson(res.cast<String, dynamic>());
   }
 
   /// gunakan ini agar bisa menarik uang
-  Future<Map> getPayout({
+  Future<PayOutResponse> getPayout({
     String forUserId = "",
     required String id,
   }) async {
-    return await request(
+    Map res = await request(
       "payouts/$id",
       headers: {
         "for-user-id": forUserId,
       },
       methodRequest: "get",
     );
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return PayOutResponse.fromJson(res.cast<String, dynamic>());
   }
 
   /// ddd
-  Future<Map> voidPayout({
+  Future<VoidPayOutResponse> voidPayout({
     String forUserId = "",
     required String id,
   }) async {
-    return await request(
+    Map res = await request(
       "payouts/$id/void",
       headers: {
         "for-user-id": forUserId,
       },
       methodRequest: "get",
     );
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return VoidPayOutResponse.fromJson(res.cast<String, dynamic>());
   }
 
   /// bikin akun untuk xentplatform
-  Future<Map> createAccount({
+  Future<XenPlatformAccount> createAccount({
     required String email,
     String type = "OWNED",
     required String business_name,
   }) async {
-    return await request("v2/accounts", methodRequest: "post", parameters: {
+    Map res = await request("v2/accounts", methodRequest: "post", parameters: {
       "email": email,
       "type": type,
       "public_profile": {
         "business_name": business_name,
       },
     });
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return XenPlatformAccount.fromJson(res.cast<String, dynamic>());
   }
 
   /// mengambil account dari id
-  Future<Map> getAccountById({
+  Future<XenPlatformAccount> getAccountById({
     required String id,
   }) async {
-    return await request(
+    Map res = await request(
       "v2/accounts/$id",
       methodRequest: "get",
     );
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return XenPlatformAccount.fromJson(res.cast<String, dynamic>());
   }
 
   /// meng update account xen platform
-  Future<Map> updateAccount({
+  Future<XenPlatformAccount> updateAccount({
     required String id,
     required String email,
     required String business_name,
   }) async {
-    return await request("v2/accounts/$id",
-        methodRequest: "patch",
-        parameters: {
-          "email": email,
-          "public_profile": {
-            "business_name": business_name,
-          },
-        });
+    Map res = await request("v2/accounts/$id", methodRequest: "patch", parameters: {
+      "email": email,
+      "public_profile": {
+        "business_name": business_name,
+      },
+    });
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return XenPlatformAccount.fromJson(res.cast<String, dynamic>());
   }
 
   /// transfer saldo ke orang lain
-  Future<Map> transfer({
+  Future<XenPlatformTransfer> transfer({
     required String reference,
     required int amount,
     required String source_user_id,
     required String destination_user_id,
   }) async {
-    return await request("transfers", methodRequest: "post", parameters: {
+    Map res = await request("transfers", methodRequest: "post", parameters: {
       "reference": reference,
       "amount": amount,
       "source_user_id": source_user_id,
       "destination_user_id": destination_user_id,
     });
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return XenPlatformTransfer.fromJson(res.cast<String, dynamic>());
   }
 
   /// untuk check saldo
-  Future<Map> getBalance(
-      {String forUserId = "", String account_type = "CASH"}) async {
-    return await request("balance", methodRequest: "get", queryParameters: {
+  Future<BalanceResponse> getBalance({String forUserId = "", String account_type = "CASH"}) async {
+    Map res = await request("balance", methodRequest: "get", queryParameters: {
       "account_type": account_type,
     }, headers: {
       "for-user-id": forUserId
     });
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return BalanceResponse.fromJson(res.cast<String, dynamic>());
   }
 
   /// untuk check transfer
-  Future<Map> getTransfer({
+  Future<XenPlatformTransferReference> getTransfer({
     required String reference,
   }) async {
-    return await request("transfers/reference=$reference",
-        methodRequest: "get");
+    Map res = await request("transfers/reference=$reference", methodRequest: "get");
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return XenPlatformTransferReference.fromJson(res.cast<String, dynamic>());
   }
 
   /// untuk membuat rules
-  Future<Map> createFeeRule({
+  Future<XenPlatformFeeRuleResponse> createFeeRule({
     required String name,
     required String description,
     required String unit,
     required num amount,
     required String currency,
   }) async {
-    return await request("fee_rules", methodRequest: "post", parameters: {
+    Map res = await request("fee_rules", methodRequest: "post", parameters: {
       "name": name,
       "description": description,
       "routes": [
         {"unit": unit, "amount": amount, "currency": currency}
       ]
     });
+    if (res["@type"] == "error") {
+      return Future.error(XenditError(res));
+    }
+    return XenPlatformFeeRuleResponse.fromJson(res.cast<String, dynamic>());
   }
 }
 
@@ -344,5 +397,18 @@ extension MapDeleteValueNull on Map {
       return false;
     });
     return;
+  }
+}
+
+class XenditError {
+  late Map data;
+  XenditError(this.data);
+
+  Map toMap() {
+    return data;
+  }
+
+  Map toJson() {
+    return data;
   }
 }
