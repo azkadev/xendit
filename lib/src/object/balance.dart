@@ -2,9 +2,8 @@
 // Example Usage
 Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myBalanceResponseNode = BalanceResponse.fromJson(map);
-*/ 
+*/
 part of xendit;
- 
 
 /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
 class GetBalanceResponse {
@@ -13,11 +12,10 @@ class GetBalanceResponse {
   /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
   GetBalanceResponse(this.rawData);
 
-
   /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
   int? get balance {
     try {
-      if (rawData["balance"] is int == false){
+      if (rawData["balance"] is int == false) {
         return null;
       }
       return rawData["balance"] as int;
@@ -25,7 +23,6 @@ class GetBalanceResponse {
       return null;
     }
   }
-
 
   /// return original data json
   Map toMap() {
@@ -43,4 +40,3 @@ class GetBalanceResponse {
     return json.encode(rawData);
   }
 }
-

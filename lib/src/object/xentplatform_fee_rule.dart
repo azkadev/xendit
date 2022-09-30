@@ -3,8 +3,7 @@
 Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myXenPlatformFeeRuleResponseNode = XenPlatformFeeRuleResponse.fromJson(map);
 */
-part of xendit; 
-
+part of xendit;
 
 /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
 class XenPlatFormCreateFeeRuleResponse {
@@ -13,11 +12,10 @@ class XenPlatFormCreateFeeRuleResponse {
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   XenPlatFormCreateFeeRuleResponse(this.rawData);
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get id {
     try {
-      if (rawData["id"] is String == false){
+      if (rawData["id"] is String == false) {
         return null;
       }
       return rawData["id"] as String;
@@ -26,11 +24,10 @@ class XenPlatFormCreateFeeRuleResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get name {
     try {
-      if (rawData["name"] is String == false){
+      if (rawData["name"] is String == false) {
         return null;
       }
       return rawData["name"] as String;
@@ -39,11 +36,10 @@ class XenPlatFormCreateFeeRuleResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get description {
     try {
-      if (rawData["description"] is String == false){
+      if (rawData["description"] is String == false) {
         return null;
       }
       return rawData["description"] as String;
@@ -52,11 +48,10 @@ class XenPlatFormCreateFeeRuleResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   XenPlatFormCreateFeeRuleResponseRoutes? get routes {
     try {
-      if (rawData["routes"] is Map == false){
+      if (rawData["routes"] is Map == false) {
         return null;
       }
       return XenPlatFormCreateFeeRuleResponseRoutes(rawData["routes"] as Map);
@@ -65,11 +60,10 @@ class XenPlatFormCreateFeeRuleResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get created {
     try {
-      if (rawData["created"] is String == false){
+      if (rawData["created"] is String == false) {
         return null;
       }
       return rawData["created"] as String;
@@ -78,11 +72,10 @@ class XenPlatFormCreateFeeRuleResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get updated {
     try {
-      if (rawData["updated"] is String == false){
+      if (rawData["updated"] is String == false) {
         return null;
       }
       return rawData["updated"] as String;
@@ -91,19 +84,18 @@ class XenPlatFormCreateFeeRuleResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   XenPlatFormCreateFeeRuleResponseMetadata? get metadata {
     try {
-      if (rawData["metadata"] is Map == false){
+      if (rawData["metadata"] is Map == false) {
         return null;
       }
-      return XenPlatFormCreateFeeRuleResponseMetadata(rawData["metadata"] as Map);
+      return XenPlatFormCreateFeeRuleResponseMetadata(
+          rawData["metadata"] as Map);
     } catch (e) {
       return null;
     }
   }
-
 
   /// return original data json
   Map toMap() {
@@ -121,9 +113,6 @@ class XenPlatFormCreateFeeRuleResponse {
     return json.encode(rawData);
   }
 }
-
-
-
 
 /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
 class XenPlatFormCreateFeeRuleResponseRoutes {
@@ -132,11 +121,10 @@ class XenPlatFormCreateFeeRuleResponseRoutes {
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   XenPlatFormCreateFeeRuleResponseRoutes(this.rawData);
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get unit {
     try {
-      if (rawData["unit"] is String == false){
+      if (rawData["unit"] is String == false) {
         return null;
       }
       return rawData["unit"] as String;
@@ -145,11 +133,10 @@ class XenPlatFormCreateFeeRuleResponseRoutes {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   int? get amount {
     try {
-      if (rawData["amount"] is int == false){
+      if (rawData["amount"] is int == false) {
         return null;
       }
       return rawData["amount"] as int;
@@ -158,11 +145,10 @@ class XenPlatFormCreateFeeRuleResponseRoutes {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get currency {
     try {
-      if (rawData["currency"] is String == false){
+      if (rawData["currency"] is String == false) {
         return null;
       }
       return rawData["currency"] as String;
@@ -171,11 +157,10 @@ class XenPlatFormCreateFeeRuleResponseRoutes {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get destination_account_id {
     try {
-      if (rawData["destination_account_id"] is String == false){
+      if (rawData["destination_account_id"] is String == false) {
         return null;
       }
       return rawData["destination_account_id"] as String;
@@ -184,7 +169,6 @@ class XenPlatFormCreateFeeRuleResponseRoutes {
     }
   }
 
-
   /// return original data json
   Map toMap() {
     return rawData;
@@ -201,11 +185,6 @@ class XenPlatFormCreateFeeRuleResponseRoutes {
     return json.encode(rawData);
   }
 }
-
-
-
-
-
 
 /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
 class XenPlatFormCreateFeeRuleResponseMetadata {
@@ -214,7 +193,6 @@ class XenPlatFormCreateFeeRuleResponseMetadata {
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   XenPlatFormCreateFeeRuleResponseMetadata(this.rawData);
 
-
   /// return original data json
   Map toMap() {
     return rawData;
@@ -231,4 +209,3 @@ class XenPlatFormCreateFeeRuleResponseMetadata {
     return json.encode(rawData);
   }
 }
-

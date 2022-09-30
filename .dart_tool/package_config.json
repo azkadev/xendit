@@ -27,9 +27,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1",
+      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dartlang.org/lints-2.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "meta",
@@ -74,7 +74,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-09-05T22:40:01.428878Z",
+  "generated": "2022-09-30T08:06:27.255214Z",
   "generator": "pub",
-  "generatorVersion": "2.17.6"
+  "generatorVersion": "2.18.0"
 }

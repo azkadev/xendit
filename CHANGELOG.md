@@ -20,3 +20,6 @@
 
 ## 0.0.6
 - update docs
+
+## 0.0.7
+- add shorthand

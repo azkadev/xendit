@@ -3,7 +3,7 @@
 Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myRootNode = Root.fromJson(map);
 */
-part of xendit; 
+part of xendit;
 
 /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
 class XenPlatFormCreateTransferResponse {
@@ -12,11 +12,10 @@ class XenPlatFormCreateTransferResponse {
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   XenPlatFormCreateTransferResponse(this.rawData);
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get created {
     try {
-      if (rawData["created"] is String == false){
+      if (rawData["created"] is String == false) {
         return null;
       }
       return rawData["created"] as String;
@@ -25,11 +24,10 @@ class XenPlatFormCreateTransferResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get transfer_id {
     try {
-      if (rawData["transfer_id"] is String == false){
+      if (rawData["transfer_id"] is String == false) {
         return null;
       }
       return rawData["transfer_id"] as String;
@@ -38,11 +36,10 @@ class XenPlatFormCreateTransferResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get reference {
     try {
-      if (rawData["reference"] is String == false){
+      if (rawData["reference"] is String == false) {
         return null;
       }
       return rawData["reference"] as String;
@@ -51,11 +48,10 @@ class XenPlatFormCreateTransferResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get source_user_id {
     try {
-      if (rawData["source_user_id"] is String == false){
+      if (rawData["source_user_id"] is String == false) {
         return null;
       }
       return rawData["source_user_id"] as String;
@@ -64,11 +60,10 @@ class XenPlatFormCreateTransferResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get destination_user_id {
     try {
-      if (rawData["destination_user_id"] is String == false){
+      if (rawData["destination_user_id"] is String == false) {
         return null;
       }
       return rawData["destination_user_id"] as String;
@@ -77,11 +72,10 @@ class XenPlatFormCreateTransferResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   String? get status {
     try {
-      if (rawData["status"] is String == false){
+      if (rawData["status"] is String == false) {
         return null;
       }
       return rawData["status"] as String;
@@ -90,11 +84,10 @@ class XenPlatFormCreateTransferResponse {
     }
   }
 
-
   /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
   int? get amount {
     try {
-      if (rawData["amount"] is int == false){
+      if (rawData["amount"] is int == false) {
         return null;
       }
       return rawData["amount"] as int;
@@ -102,7 +95,6 @@ class XenPlatFormCreateTransferResponse {
       return null;
     }
   }
-
 
   /// return original data json
   Map toMap() {
@@ -120,4 +112,3 @@ class XenPlatFormCreateTransferResponse {
     return json.encode(rawData);
   }
 }
-

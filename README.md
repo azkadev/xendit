@@ -11,7 +11,7 @@ dart pub add xendit
 ### Quickstart
 
 ```bash
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages, avoid_print
 import 'dart:convert';
 import 'package:xendit/xendit.dart';
 void main() async {
@@ -41,7 +41,11 @@ void main() async {
       "external_id": "exstesa",
     },
   );
-  print(json.encode(getInvoices));
+  GetInvoiceResponse getInvoiceResponse = GetInvoiceResponse(getInvoices);
+  print(getInvoiceResponse.toJson());
+  PayoutResponse payoutResponse = await xendit.createPayout(external_id: "external_id", amount: 10000, email: "hai@gmail.com");
+  payoutResponse.payout_url;
+  print(payoutResponse.toJson());
 }
 ```
 

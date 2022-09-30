@@ -38,15 +38,21 @@ class Xendit {
       "Content-Type": 'application/json',
       ...headers,
     };
-    late Map json_respond = {"status_code": 200, "status_bool": true, "result": {}};
+    late Map json_respond = {
+      "status_code": 200,
+      "status_bool": true,
+      "result": {}
+    };
     late Response result;
     Uri urlApi = Uri.parse(url).replace(queryParameters: queryParameters);
     if (methodRequest == "get") {
       result = await get(urlApi, headers: headersOption);
     } else if (methodRequest == "post") {
-      result = await post(urlApi, headers: headersOption, body: json.encode(parameters));
+      result = await post(urlApi,
+          headers: headersOption, body: json.encode(parameters));
     } else if (methodRequest == "patch") {
-      result = await patch(urlApi, headers: headersOption, body: json.encode(parameters));
+      result = await patch(urlApi,
+          headers: headersOption, body: json.encode(parameters));
     } else {
       result = await get(urlApi, headers: headersOption);
     }
@@ -181,7 +187,8 @@ class Xendit {
   }
 
   /// untuk membuat invoice expired
-  Future<ExpireInvoiceResponse> expireInvoices({String forUserId = "", required String invoiceId}) async {
+  Future<ExpireInvoiceResponse> expireInvoices(
+      {String forUserId = "", required String invoiceId}) async {
     Map res = await request(
       "v2/invoices/$invoiceId/expire!",
       headers: {
@@ -235,7 +242,7 @@ class Xendit {
     );
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
-    } 
+    }
     return PayoutResponse(res.cast<String, dynamic>());
   }
 
@@ -296,7 +303,8 @@ class Xendit {
     required String email,
     required String business_name,
   }) async {
-    Map res = await request("v2/accounts/$id", methodRequest: "patch", parameters: {
+    Map res =
+        await request("v2/accounts/$id", methodRequest: "patch", parameters: {
       "email": email,
       "public_profile": {
         "business_name": business_name,
@@ -328,7 +336,8 @@ class Xendit {
   }
 
   /// untuk check saldo
-  Future<GetBalanceResponse> getBalance({String forUserId = "", String account_type = "CASH"}) async {
+  Future<GetBalanceResponse> getBalance(
+      {String forUserId = "", String account_type = "CASH"}) async {
     Map res = await request("balance", methodRequest: "get", queryParameters: {
       "account_type": account_type,
     }, headers: {
@@ -344,7 +353,8 @@ class Xendit {
   Future<XenPlatFormCreateTransferResponse> getTransfer({
     required String reference,
   }) async {
-    Map res = await request("transfers/reference=$reference", methodRequest: "get");
+    Map res =
+        await request("transfers/reference=$reference", methodRequest: "get");
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
