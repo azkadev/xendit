@@ -3,78 +3,121 @@
 Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myRootNode = Root.fromJson(map);
 */
-part of xendit;
+part of xendit; 
 
-class XenPlatformTransfer {
-  String? created;
-  String? transferid;
-  String? reference;
-  String? sourceuserid;
-  String? destinationuserid;
-  String? status;
-  int? amount;
+/// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+class XenPlatFormCreateTransferResponse {
+  late Map rawData;
 
-  XenPlatformTransfer({this.created, this.transferid, this.reference, this.sourceuserid, this.destinationuserid, this.status, this.amount});
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+  XenPlatFormCreateTransferResponse(this.rawData);
 
-  XenPlatformTransfer.fromJson(Map<String, dynamic> json) {
-    created = json['created'];
-    transferid = json['transfer_id'];
-    reference = json['reference'];
-    sourceuserid = json['source_user_id'];
-    destinationuserid = json['destination_user_id'];
-    status = json['status'];
-    amount = json['amount'];
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+  String? get created {
+    try {
+      if (rawData["created"] is String == false){
+        return null;
+      }
+      return rawData["created"] as String;
+    } catch (e) {
+      return null;
+    }
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['created'] = created;
-    data['transfer_id'] = transferid;
-    data['reference'] = reference;
-    data['source_user_id'] = sourceuserid;
-    data['destination_user_id'] = destinationuserid;
-    data['status'] = status;
-    data['amount'] = amount;
-    return data;
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+  String? get transfer_id {
+    try {
+      if (rawData["transfer_id"] is String == false){
+        return null;
+      }
+      return rawData["transfer_id"] as String;
+    } catch (e) {
+      return null;
+    }
   }
-}
 
-/* 
-// Example Usage
-Map<String, dynamic> map = jsonDecode(<myJSONString>);
-var myRootNode = Root.fromJson(map);
-*/ 
-class XenPlatformTransferReference {
-    String? created;
-    String? transferid;
-    String? reference;
-    String? sourceuserid;
-    String? destinationuserid;
-    String? status;
-    int? amount;
 
-    XenPlatformTransferReference({this.created, this.transferid, this.reference, this.sourceuserid, this.destinationuserid, this.status, this.amount}); 
-
-    XenPlatformTransferReference.fromJson(Map<String, dynamic> json) {
-        created = json['created'];
-        transferid = json['transfer_id'];
-        reference = json['reference'];
-        sourceuserid = json['source_user_id'];
-        destinationuserid = json['destination_user_id'];
-        status = json['status'];
-        amount = json['amount'];
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+  String? get reference {
+    try {
+      if (rawData["reference"] is String == false){
+        return null;
+      }
+      return rawData["reference"] as String;
+    } catch (e) {
+      return null;
     }
+  }
 
-    Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = <String, dynamic>{};
-        data['created'] = created;
-        data['transfer_id'] = transferid;
-        data['reference'] = reference;
-        data['source_user_id'] = sourceuserid;
-        data['destination_user_id'] = destinationuserid;
-        data['status'] = status;
-        data['amount'] = amount;
-        return data;
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+  String? get source_user_id {
+    try {
+      if (rawData["source_user_id"] is String == false){
+        return null;
+      }
+      return rawData["source_user_id"] as String;
+    } catch (e) {
+      return null;
     }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+  String? get destination_user_id {
+    try {
+      if (rawData["destination_user_id"] is String == false){
+        return null;
+      }
+      return rawData["destination_user_id"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+  String? get status {
+    try {
+      if (rawData["status"] is String == false){
+        return null;
+      }
+      return rawData["status"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-account)
+  int? get amount {
+    try {
+      if (rawData["amount"] is int == false){
+        return null;
+      }
+      return rawData["amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
 }
 

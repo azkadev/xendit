@@ -65,7 +65,7 @@ class Xendit {
   }
 
   /// invoices
-  Future<InvoiceResponse> createInvoices({
+  Future<CreateInvoiceResponse> createInvoices({
     String forUserId = "",
     String withFeeRule = "",
     required String external_id,
@@ -125,7 +125,7 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return InvoiceResponse.fromJson(res.cast<String, dynamic>());
+    return CreateInvoiceResponse(res.cast<String, dynamic>());
   }
 
   /// mengambil invoice dari id
@@ -143,7 +143,7 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return GetInvoiceResponse.fromJson(res.cast<String, dynamic>());
+    return GetInvoiceResponse(res.cast<String, dynamic>());
   }
 
   /// mengambil invoice dari external id
@@ -192,11 +192,11 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return ExpireInvoiceResponse.fromJson(res.cast<String, dynamic>());
+    return ExpireInvoiceResponse(res.cast<String, dynamic>());
   }
 
   /// jika anda ingin menarik uang anda bisa menggunakan ini
-  Future<PayOutResponse> createPayout({
+  Future<PayoutResponse> createPayout({
     String forUserId = "",
     required String external_id,
     required int amount,
@@ -218,11 +218,11 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return PayOutResponse.fromJson(res.cast<String, dynamic>());
+    return PayoutResponse(res.cast<String, dynamic>());
   }
 
   /// gunakan ini agar bisa menarik uang
-  Future<PayOutResponse> getPayout({
+  Future<PayoutResponse> getPayout({
     String forUserId = "",
     required String id,
   }) async {
@@ -235,12 +235,12 @@ class Xendit {
     );
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
-    }
-    return PayOutResponse.fromJson(res.cast<String, dynamic>());
+    } 
+    return PayoutResponse(res.cast<String, dynamic>());
   }
 
   /// ddd
-  Future<VoidPayOutResponse> voidPayout({
+  Future<VoidPayoutResponse> voidPayout({
     String forUserId = "",
     required String id,
   }) async {
@@ -254,11 +254,11 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return VoidPayOutResponse.fromJson(res.cast<String, dynamic>());
+    return VoidPayoutResponse(res.cast<String, dynamic>());
   }
 
   /// bikin akun untuk xentplatform
-  Future<XenPlatformAccount> createAccount({
+  Future<XenPlatFormAccount> createAccount({
     required String email,
     String type = "OWNED",
     required String business_name,
@@ -273,11 +273,11 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return XenPlatformAccount.fromJson(res.cast<String, dynamic>());
+    return XenPlatFormAccount(res.cast<String, dynamic>());
   }
 
   /// mengambil account dari id
-  Future<XenPlatformAccount> getAccountById({
+  Future<XenPlatFormAccount> getAccountById({
     required String id,
   }) async {
     Map res = await request(
@@ -287,11 +287,11 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return XenPlatformAccount.fromJson(res.cast<String, dynamic>());
+    return XenPlatFormAccount(res.cast<String, dynamic>());
   }
 
   /// meng update account xen platform
-  Future<XenPlatformAccount> updateAccount({
+  Future<XenPlatFormAccount> updateAccount({
     required String id,
     required String email,
     required String business_name,
@@ -305,11 +305,11 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return XenPlatformAccount.fromJson(res.cast<String, dynamic>());
+    return XenPlatFormAccount(res.cast<String, dynamic>());
   }
 
   /// transfer saldo ke orang lain
-  Future<XenPlatformTransfer> transfer({
+  Future<XenPlatFormCreateTransferResponse> transfer({
     required String reference,
     required int amount,
     required String source_user_id,
@@ -324,11 +324,11 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return XenPlatformTransfer.fromJson(res.cast<String, dynamic>());
+    return XenPlatFormCreateTransferResponse(res.cast<String, dynamic>());
   }
 
   /// untuk check saldo
-  Future<BalanceResponse> getBalance({String forUserId = "", String account_type = "CASH"}) async {
+  Future<GetBalanceResponse> getBalance({String forUserId = "", String account_type = "CASH"}) async {
     Map res = await request("balance", methodRequest: "get", queryParameters: {
       "account_type": account_type,
     }, headers: {
@@ -337,22 +337,22 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return BalanceResponse.fromJson(res.cast<String, dynamic>());
+    return GetBalanceResponse(res.cast<String, dynamic>());
   }
 
   /// untuk check transfer
-  Future<XenPlatformTransferReference> getTransfer({
+  Future<XenPlatFormCreateTransferResponse> getTransfer({
     required String reference,
   }) async {
     Map res = await request("transfers/reference=$reference", methodRequest: "get");
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return XenPlatformTransferReference.fromJson(res.cast<String, dynamic>());
+    return XenPlatFormCreateTransferResponse(res.cast<String, dynamic>());
   }
 
   /// untuk membuat rules
-  Future<XenPlatformFeeRuleResponse> createFeeRule({
+  Future<XenPlatFormCreateFeeRuleResponse> createFeeRule({
     required String name,
     required String description,
     required String unit,
@@ -369,7 +369,7 @@ class Xendit {
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
-    return XenPlatformFeeRuleResponse.fromJson(res.cast<String, dynamic>());
+    return XenPlatFormCreateFeeRuleResponse(res.cast<String, dynamic>());
   }
 }
 

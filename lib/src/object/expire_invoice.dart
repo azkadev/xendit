@@ -1,83 +1,397 @@
-part of xendit;
+// ignore_for_file: non_constant_identifier_names
 
+part of xendit; 
 
-/* 
-// Example Usage
-Map<String, dynamic> map = jsonDecode(<myJSONString>);
-var myRootNode = Root.fromJson(map);
-*/  
-
+/// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
 class ExpireInvoiceResponse {
-    String? id;
-    String? userid;
-    String? externalid;
-    String? status;
-    String? merchantname;
-    String? merchantprofilepictureurl;
-    int? amount;
-    String? payeremail;
-    String? description;
-    String? invoiceurl;
-    String? expirydate;
-    List<AvailableBank?>? availablebanks;
-    List<AvailableRetailOutlet?>? availableretailoutlets;
-    bool? shouldexcludecreditcard;
-    bool? shouldsendemail;
-    String? created;
-    String? updated;
+  late Map rawData;
 
-    ExpireInvoiceResponse({this.id, this.userid, this.externalid, this.status, this.merchantname, this.merchantprofilepictureurl, this.amount, this.payeremail, this.description, this.invoiceurl, this.expirydate, this.availablebanks, this.availableretailoutlets, this.shouldexcludecreditcard, this.shouldsendemail, this.created, this.updated}); 
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  ExpireInvoiceResponse(this.rawData);
 
-    ExpireInvoiceResponse.fromJson(Map<String, dynamic> json) {
-        id = json['id'];
-        userid = json['user_id'];
-        externalid = json['external_id'];
-        status = json['status'];
-        merchantname = json['merchant_name'];
-        merchantprofilepictureurl = json['merchant_profile_picture_url'];
-        amount = json['amount'];
-        payeremail = json['payer_email'];
-        description = json['description'];
-        invoiceurl = json['invoice_url'];
-        expirydate = json['expiry_date'];
-        if (json['available_banks'] != null) {
-         availablebanks = <AvailableBank>[];
-         json['available_banks'].forEach((v) {
-         availablebanks!.add(AvailableBank.fromJson(v));
-        });
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get id {
+    try {
+      if (rawData["id"] is String == false){
+        return null;
       }
-        if (json['available_retail_outlets'] != null) {
-         availableretailoutlets = <AvailableRetailOutlet>[];
-         json['available_retail_outlets'].forEach((v) {
-         availableretailoutlets!.add(AvailableRetailOutlet.fromJson(v));
-        });
-      }
-        shouldexcludecreditcard = json['should_exclude_credit_card'];
-        shouldsendemail = json['should_send_email'];
-        created = json['created'];
-        updated = json['updated'];
+      return rawData["id"] as String;
+    } catch (e) {
+      return null;
     }
+  }
 
-    Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = Map<String, dynamic>();
-        data['id'] = id;
-        data['user_id'] = userid;
-        data['external_id'] = externalid;
-        data['status'] = status;
-        data['merchant_name'] = merchantname;
-        data['merchant_profile_picture_url'] = merchantprofilepictureurl;
-        data['amount'] = amount;
-        data['payer_email'] = payeremail;
-        data['description'] = description;
-        data['invoice_url'] = invoiceurl;
-        data['expiry_date'] = expirydate;
-        data['available_banks'] =availablebanks != null ? availablebanks!.map((v) => v?.toJson()).toList() : null;
-        data['available_retail_outlets'] =availableretailoutlets != null ? availableretailoutlets!.map((v) => v?.toJson()).toList() : null;
-        data['should_exclude_credit_card'] = shouldexcludecreditcard;
-        data['should_send_email'] = shouldsendemail;
-        data['created'] = created;
-        data['updated'] = updated;
-        return data;
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get user_id {
+    try {
+      if (rawData["user_id"] is String == false){
+        return null;
+      }
+      return rawData["user_id"] as String;
+    } catch (e) {
+      return null;
     }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get external_id {
+    try {
+      if (rawData["external_id"] is String == false){
+        return null;
+      }
+      return rawData["external_id"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get status {
+    try {
+      if (rawData["status"] is String == false){
+        return null;
+      }
+      return rawData["status"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get merchant_name {
+    try {
+      if (rawData["merchant_name"] is String == false){
+        return null;
+      }
+      return rawData["merchant_name"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get merchant_profile_picture_url {
+    try {
+      if (rawData["merchant_profile_picture_url"] is String == false){
+        return null;
+      }
+      return rawData["merchant_profile_picture_url"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  int? get amount {
+    try {
+      if (rawData["amount"] is int == false){
+        return null;
+      }
+      return rawData["amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get payer_email {
+    try {
+      if (rawData["payer_email"] is String == false){
+        return null;
+      }
+      return rawData["payer_email"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get description {
+    try {
+      if (rawData["description"] is String == false){
+        return null;
+      }
+      return rawData["description"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get invoice_url {
+    try {
+      if (rawData["invoice_url"] is String == false){
+        return null;
+      }
+      return rawData["invoice_url"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get expiry_date {
+    try {
+      if (rawData["expiry_date"] is String == false){
+        return null;
+      }
+      return rawData["expiry_date"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  List<ExpireInvoiceResponseAvailableBanks?>? get available_banks {
+    try {
+      if (rawData["available_banks"] is List == false){
+        return null;
+      }
+      return (rawData["available_banks"] as List).map((e) => ExpireInvoiceResponseAvailableBanks(e as Map)).toList().cast<ExpireInvoiceResponseAvailableBanks>();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  List<ExpireInvoiceResponseAvailableRetailOutlets?>? get available_retail_outlets {
+    try {
+      if (rawData["available_retail_outlets"] is List == false){
+        return null;
+      }
+      return (rawData["available_retail_outlets"] as List).map((e) => ExpireInvoiceResponseAvailableRetailOutlets(e as Map)).toList().cast<ExpireInvoiceResponseAvailableRetailOutlets>();
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  bool? get should_exclude_credit_card {
+    try {
+      if (rawData["should_exclude_credit_card"] is bool == false){
+        return null;
+      }
+      return rawData["should_exclude_credit_card"] as bool;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  bool? get should_send_email {
+    try {
+      if (rawData["should_send_email"] is bool == false){
+        return null;
+      }
+      return rawData["should_send_email"] as bool;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get created {
+    try {
+      if (rawData["created"] is String == false){
+        return null;
+      }
+      return rawData["created"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get updated {
+    try {
+      if (rawData["updated"] is String == false){
+        return null;
+      }
+      return rawData["updated"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
+}
+
+
+
+
+/// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+class ExpireInvoiceResponseAvailableBanks {
+  late Map rawData;
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  ExpireInvoiceResponseAvailableBanks(this.rawData);
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get bank_code {
+    try {
+      if (rawData["bank_code"] is String == false){
+        return null;
+      }
+      return rawData["bank_code"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get collection_type {
+    try {
+      if (rawData["collection_type"] is String == false){
+        return null;
+      }
+      return rawData["collection_type"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  int? get bank_account_number {
+    try {
+      if (rawData["bank_account_number"] is int == false){
+        return null;
+      }
+      return rawData["bank_account_number"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  int? get transfer_amount {
+    try {
+      if (rawData["transfer_amount"] is int == false){
+        return null;
+      }
+      return rawData["transfer_amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
+}
+
+
+
+
+
+
+/// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+class ExpireInvoiceResponseAvailableRetailOutlets {
+  late Map rawData;
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  ExpireInvoiceResponseAvailableRetailOutlets(this.rawData);
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get retail_outlet_name {
+    try {
+      if (rawData["retail_outlet_name"] is String == false){
+        return null;
+      }
+      return rawData["retail_outlet_name"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  String? get payment_code {
+    try {
+      if (rawData["payment_code"] is String == false){
+        return null;
+      }
+      return rawData["payment_code"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  int? get transfer_amount {
+    try {
+      if (rawData["transfer_amount"] is int == false){
+        return null;
+      }
+      return rawData["transfer_amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
 }
 

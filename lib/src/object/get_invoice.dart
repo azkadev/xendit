@@ -1,154 +1,621 @@
-// ignore_for_file: empty_catches
+// ignore_for_file: empty_catches, non_constant_identifier_names
 
-part of xendit;
+part of xendit; 
 
-/* 
-// Example Usage
-Map<String, dynamic> map = jsonDecode(<myJSONString>);
-var myRootNode = Root.fromJson(map);
-*/
-
-class AvailableRetailOutlet {
-  String? retailoutletname;
-  String? paymentcode;
-  int? transferamount;
-
-  AvailableRetailOutlet({this.retailoutletname, this.paymentcode, this.transferamount});
-
-  AvailableRetailOutlet.fromJson(Map<String, dynamic> json) {
-    retailoutletname = json['retail_outlet_name'];
-    try {
-      paymentcode = json['payment_code'];
-    } catch (e) {}
-    try {
-      transferamount = json['transfer_amount'];
-    } catch (e) {}
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['retail_outlet_name'] = retailoutletname;
-    try {
-      data['payment_code'] = paymentcode;
-    } catch (e) {}
-    try {
-      data['transfer_amount'] = transferamount;
-    } catch (e) {}
-    return data;
-  }
-}
-
+/// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
 class GetInvoiceResponse {
-  String? id;
-  String? userid;
-  String? externalid;
-  String? status;
-  String? merchantname;
-  String? merchantprofilepictureurl;
-  int? amount;
-  String? payeremail;
-  String? description;
-  String? invoiceurl;
-  String? expirydate;
-  List<AvailableBank?>? availablebanks;
-  List<AvailableRetailOutlet?>? availableretailoutlets;
-  List<AvailablePaylater?>? availablepaylaters;
-  bool? shouldexcludecreditcard;
-  bool? shouldsendemail;
-  String? created;
-  String? updated;
-  String? midlabel;
-  String? currency;
-  String? paidat;
-  String? creditcardchargeid;
-  String? paymentmethod;
-  String? paymentchannel;
-  String? paymentdestination;
-  String? successredirecturl;
-  String? failureredirecturl;
-  bool? fixedva;
-  String? locale;
+  late Map rawData;
 
-  GetInvoiceResponse({this.id, this.userid, this.externalid, this.status, this.merchantname, this.merchantprofilepictureurl, this.amount, this.payeremail, this.description, this.invoiceurl, this.expirydate, this.availablebanks, this.availableretailoutlets, this.availablepaylaters, this.shouldexcludecreditcard, this.shouldsendemail, this.created, this.updated, this.midlabel, this.currency, this.paidat, this.creditcardchargeid, this.paymentmethod, this.paymentchannel, this.paymentdestination, this.successredirecturl, this.failureredirecturl, this.fixedva, this.locale});
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  GetInvoiceResponse(this.rawData);
 
-  GetInvoiceResponse.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userid = json['user_id'];
-    externalid = json['external_id'];
-    status = json['status'];
-    merchantname = json['merchant_name'];
-    merchantprofilepictureurl = json['merchant_profile_picture_url'];
-    amount = json['amount'];
-    payeremail = json['payer_email'];
-    description = json['description'];
-    invoiceurl = json['invoice_url'];
-    expirydate = json['expiry_date'];
-    if (json['available_banks'] != null) {
-      availablebanks = <AvailableBank>[];
-      json['available_banks'].forEach((v) {
-        availablebanks!.add(AvailableBank.fromJson(v));
-      });
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get id {
+    try {
+      if (rawData["id"] is String == false){
+        return null;
+      }
+      return rawData["id"] as String;
+    } catch (e) {
+      return null;
     }
-    if (json['available_retail_outlets'] != null) {
-      availableretailoutlets = <AvailableRetailOutlet>[];
-      json['available_retail_outlets'].forEach((v) {
-        availableretailoutlets!.add(AvailableRetailOutlet.fromJson(v));
-      });
-    }
-    if (json['available_paylaters'] != null) {
-      availablepaylaters = <AvailablePaylater>[];
-      json['available_paylaters'].forEach((v) {
-        availablepaylaters!.add(AvailablePaylater.fromJson(v));
-      });
-    }
-    shouldexcludecreditcard = json['should_exclude_credit_card'];
-    shouldsendemail = json['should_send_email'];
-    created = json['created'];
-    updated = json['updated'];
-    midlabel = json['mid_label'];
-    currency = json['currency'];
-    paidat = json['paid_at'];
-    creditcardchargeid = json['credit_card_charge_id'];
-    paymentmethod = json['payment_method'];
-    paymentchannel = json['payment_channel'];
-    paymentdestination = json['payment_destination'];
-    successredirecturl = json['success_redirect_url'];
-    failureredirecturl = json['failure_redirect_url'];
-    fixedva = json['fixed_va'];
-    locale = json['locale'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['user_id'] = userid;
-    data['external_id'] = externalid;
-    data['status'] = status;
-    data['merchant_name'] = merchantname;
-    data['merchant_profile_picture_url'] = merchantprofilepictureurl;
-    data['amount'] = amount;
-    data['payer_email'] = payeremail;
-    data['description'] = description;
-    data['invoice_url'] = invoiceurl;
-    data['expiry_date'] = expirydate;
-    data['available_banks'] = availablebanks != null ? availablebanks!.map((v) => v?.toJson()).toList() : null;
-    data['available_retail_outlets'] = availableretailoutlets != null ? availableretailoutlets!.map((v) => v?.toJson()).toList() : null;
-    data['available_paylaters'] = availablepaylaters != null ? availablepaylaters!.map((v) => v?.toJson()).toList() : null;
-    data['should_exclude_credit_card'] = shouldexcludecreditcard;
-    data['should_send_email'] = shouldsendemail;
-    data['created'] = created;
-    data['updated'] = updated;
-    data['mid_label'] = midlabel;
-    data['currency'] = currency;
-    data['paid_at'] = paidat;
-    data['credit_card_charge_id'] = creditcardchargeid;
-    data['payment_method'] = paymentmethod;
-    data['payment_channel'] = paymentchannel;
-    data['payment_destination'] = paymentdestination;
-    data['success_redirect_url'] = successredirecturl;
-    data['failure_redirect_url'] = failureredirecturl;
-    data['fixed_va'] = fixedva;
-    data['locale'] = locale;
-    return data;
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get user_id {
+    try {
+      if (rawData["user_id"] is String == false){
+        return null;
+      }
+      return rawData["user_id"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get external_id {
+    try {
+      if (rawData["external_id"] is String == false){
+        return null;
+      }
+      return rawData["external_id"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get status {
+    try {
+      if (rawData["status"] is String == false){
+        return null;
+      }
+      return rawData["status"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get merchant_name {
+    try {
+      if (rawData["merchant_name"] is String == false){
+        return null;
+      }
+      return rawData["merchant_name"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get merchant_profile_picture_url {
+    try {
+      if (rawData["merchant_profile_picture_url"] is String == false){
+        return null;
+      }
+      return rawData["merchant_profile_picture_url"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  int? get amount {
+    try {
+      if (rawData["amount"] is int == false){
+        return null;
+      }
+      return rawData["amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get payer_email {
+    try {
+      if (rawData["payer_email"] is String == false){
+        return null;
+      }
+      return rawData["payer_email"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get description {
+    try {
+      if (rawData["description"] is String == false){
+        return null;
+      }
+      return rawData["description"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get invoice_url {
+    try {
+      if (rawData["invoice_url"] is String == false){
+        return null;
+      }
+      return rawData["invoice_url"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get expiry_date {
+    try {
+      if (rawData["expiry_date"] is String == false){
+        return null;
+      }
+      return rawData["expiry_date"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  List<GetInvoiceResponseAvailableBanks?>? get available_banks {
+    try {
+      if (rawData["available_banks"] is List == false){
+        return null;
+      }
+      return (rawData["available_banks"] as List).map((e) => GetInvoiceResponseAvailableBanks(e as Map)).toList().cast<GetInvoiceResponseAvailableBanks>();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  List<GetInvoiceResponseAvailableRetailOutlets?>? get available_retail_outlets {
+    try {
+      if (rawData["available_retail_outlets"] is List == false){
+        return null;
+      }
+      return (rawData["available_retail_outlets"] as List).map((e) => GetInvoiceResponseAvailableRetailOutlets(e as Map)).toList().cast<GetInvoiceResponseAvailableRetailOutlets>();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  List<GetInvoiceResponseAvailablePaylaters?>? get available_paylaters {
+    try {
+      if (rawData["available_paylaters"] is List == false){
+        return null;
+      }
+      return (rawData["available_paylaters"] as List).map((e) => GetInvoiceResponseAvailablePaylaters(e as Map)).toList().cast<GetInvoiceResponseAvailablePaylaters>();
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  bool? get should_exclude_credit_card {
+    try {
+      if (rawData["should_exclude_credit_card"] is bool == false){
+        return null;
+      }
+      return rawData["should_exclude_credit_card"] as bool;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  bool? get should_send_email {
+    try {
+      if (rawData["should_send_email"] is bool == false){
+        return null;
+      }
+      return rawData["should_send_email"] as bool;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get created {
+    try {
+      if (rawData["created"] is String == false){
+        return null;
+      }
+      return rawData["created"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get updated {
+    try {
+      if (rawData["updated"] is String == false){
+        return null;
+      }
+      return rawData["updated"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get mid_label {
+    try {
+      if (rawData["mid_label"] is String == false){
+        return null;
+      }
+      return rawData["mid_label"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get currency {
+    try {
+      if (rawData["currency"] is String == false){
+        return null;
+      }
+      return rawData["currency"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get paid_at {
+    try {
+      if (rawData["paid_at"] is String == false){
+        return null;
+      }
+      return rawData["paid_at"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get credit_card_charge_id {
+    try {
+      if (rawData["credit_card_charge_id"] is String == false){
+        return null;
+      }
+      return rawData["credit_card_charge_id"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get payment_method {
+    try {
+      if (rawData["payment_method"] is String == false){
+        return null;
+      }
+      return rawData["payment_method"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get payment_channel {
+    try {
+      if (rawData["payment_channel"] is String == false){
+        return null;
+      }
+      return rawData["payment_channel"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get payment_destination {
+    try {
+      if (rawData["payment_destination"] is String == false){
+        return null;
+      }
+      return rawData["payment_destination"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get success_redirect_url {
+    try {
+      if (rawData["success_redirect_url"] is String == false){
+        return null;
+      }
+      return rawData["success_redirect_url"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get failure_redirect_url {
+    try {
+      if (rawData["failure_redirect_url"] is String == false){
+        return null;
+      }
+      return rawData["failure_redirect_url"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  bool? get fixed_va {
+    try {
+      if (rawData["fixed_va"] is bool == false){
+        return null;
+      }
+      return rawData["fixed_va"] as bool;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get locale {
+    try {
+      if (rawData["locale"] is String == false){
+        return null;
+      }
+      return rawData["locale"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
   }
 }
+
+
+
+
+/// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+class GetInvoiceResponseAvailableBanks {
+  late Map rawData;
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  GetInvoiceResponseAvailableBanks(this.rawData);
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get bank_code {
+    try {
+      if (rawData["bank_code"] is String == false){
+        return null;
+      }
+      return rawData["bank_code"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get collection_type {
+    try {
+      if (rawData["collection_type"] is String == false){
+        return null;
+      }
+      return rawData["collection_type"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get bank_account_number {
+    try {
+      if (rawData["bank_account_number"] is String == false){
+        return null;
+      }
+      return rawData["bank_account_number"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  int? get transfer_amount {
+    try {
+      if (rawData["transfer_amount"] is int == false){
+        return null;
+      }
+      return rawData["transfer_amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get bank_branch {
+    try {
+      if (rawData["bank_branch"] is String == false){
+        return null;
+      }
+      return rawData["bank_branch"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get account_holder_name {
+    try {
+      if (rawData["account_holder_name"] is String == false){
+        return null;
+      }
+      return rawData["account_holder_name"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
+}
+
+
+
+
+
+
+/// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+class GetInvoiceResponseAvailableRetailOutlets {
+  late Map rawData;
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  GetInvoiceResponseAvailableRetailOutlets(this.rawData);
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get retail_outlet_name {
+    try {
+      if (rawData["retail_outlet_name"] is String == false){
+        return null;
+      }
+      return rawData["retail_outlet_name"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get payment_code {
+    try {
+      if (rawData["payment_code"] is String == false){
+        return null;
+      }
+      return rawData["payment_code"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  int? get transfer_amount {
+    try {
+      if (rawData["transfer_amount"] is int == false){
+        return null;
+      }
+      return rawData["transfer_amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
+}
+
+
+
+
+
+
+/// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+class GetInvoiceResponseAvailablePaylaters {
+  late Map rawData;
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  GetInvoiceResponseAvailablePaylaters(this.rawData);
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#get-invoice)
+  String? get paylater_type {
+    try {
+      if (rawData["paylater_type"] is String == false){
+        return null;
+      }
+      return rawData["paylater_type"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
+}
+

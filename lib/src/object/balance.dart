@@ -4,19 +4,43 @@ Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myBalanceResponseNode = BalanceResponse.fromJson(map);
 */ 
 part of xendit;
-class BalanceResponse {
-    int? balance;
+ 
 
-    BalanceResponse({this.balance}); 
+/// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+class GetBalanceResponse {
+  late Map rawData;
 
-    BalanceResponse.fromJson(Map<String, dynamic> json) {
-        balance = json['balance'];
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  GetBalanceResponse(this.rawData);
+
+
+  /// full information [create-invoice](https://developers.xendit.co/api-reference/#expire-invoice)
+  int? get balance {
+    try {
+      if (rawData["balance"] is int == false){
+        return null;
+      }
+      return rawData["balance"] as int;
+    } catch (e) {
+      return null;
     }
+  }
 
-    Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = Map<String, dynamic>();
-        data['balance'] = balance;
-        return data;
-    }
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
 }
 

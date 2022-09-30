@@ -1,85 +1,249 @@
-part of xendit;
+part of xendit; 
 
-/* 
-// Example Usage
-Map<String, dynamic> map = jsonDecode(<myJSONString>);
-var myPayOutResponseNode = PayOutResponse.fromJson(map);
-*/ 
-class PayOutResponse {
-    String? id;
-    String? externalid;
-    int? amount;
-    String? merchantname;
-    String? status;
-    String? expirationtimestamp;
-    String? created;
-    String? payouturl;
+/// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+class PayoutResponse {
+  late Map rawData;
 
-    PayOutResponse({this.id, this.externalid, this.amount, this.merchantname, this.status, this.expirationtimestamp, this.created, this.payouturl}); 
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  PayoutResponse(this.rawData);
 
-    PayOutResponse.fromJson(Map<String, dynamic> json) {
-        id = json['id'];
-        externalid = json['external_id'];
-        amount = json['amount'];
-        merchantname = json['merchant_name'];
-        status = json['status'];
-        expirationtimestamp = json['expiration_timestamp'];
-        created = json['created'];
-        payouturl = json['payout_url'];
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  String? get id {
+    try {
+      if (rawData["id"] is String == false){
+        return null;
+      }
+      return rawData["id"] as String;
+    } catch (e) {
+      return null;
     }
+  }
 
-    Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = Map<String, dynamic>();
-        data['id'] = id;
-        data['external_id'] = externalid;
-        data['amount'] = amount;
-        data['merchant_name'] = merchantname;
-        data['status'] = status;
-        data['expiration_timestamp'] = expirationtimestamp;
-        data['created'] = created;
-        data['payout_url'] = payouturl;
-        return data;
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  String? get external_id {
+    try {
+      if (rawData["external_id"] is String == false){
+        return null;
+      }
+      return rawData["external_id"] as String;
+    } catch (e) {
+      return null;
     }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  int? get amount {
+    try {
+      if (rawData["amount"] is int == false){
+        return null;
+      }
+      return rawData["amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  String? get merchant_name {
+    try {
+      if (rawData["merchant_name"] is String == false){
+        return null;
+      }
+      return rawData["merchant_name"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  String? get status {
+    try {
+      if (rawData["status"] is String == false){
+        return null;
+      }
+      return rawData["status"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  String? get expiration_timestamp {
+    try {
+      if (rawData["expiration_timestamp"] is String == false){
+        return null;
+      }
+      return rawData["expiration_timestamp"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  String? get created {
+    try {
+      if (rawData["created"] is String == false){
+        return null;
+      }
+      return rawData["created"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#create-payout)
+  String? get payout_url {
+    try {
+      if (rawData["payout_url"] is String == false){
+        return null;
+      }
+      return rawData["payout_url"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
 }
 
-/* 
-// Example Usage
-Map<String, dynamic> map = jsonDecode(<myJSONString>);
-var myVoidPayOutResponseNode = VoidPayOutResponse.fromJson(map);
-*/ 
-class VoidPayOutResponse {
-    String? id;
-    String? externalid;
-    int? amount;
-    String? merchantname;
-    String? status;
-    String? expirationtimestamp;
-    String? created;
+ 
 
-    VoidPayOutResponse({this.id, this.externalid, this.amount, this.merchantname, this.status, this.expirationtimestamp, this.created}); 
+/// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+class VoidPayoutResponse {
+  late Map rawData;
 
-    VoidPayOutResponse.fromJson(Map<String, dynamic> json) {
-        id = json['id'];
-        externalid = json['external_id'];
-        amount = json['amount'];
-        merchantname = json['merchant_name'];
-        status = json['status'];
-        expirationtimestamp = json['expiration_timestamp'];
-        created = json['created'];
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+  VoidPayoutResponse(this.rawData);
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+  String? get id {
+    try {
+      if (rawData["id"] is String == false){
+        return null;
+      }
+      return rawData["id"] as String;
+    } catch (e) {
+      return null;
     }
+  }
 
-    Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = Map<String, dynamic>();
-        data['id'] = id;
-        data['external_id'] = externalid;
-        data['amount'] = amount;
-        data['merchant_name'] = merchantname;
-        data['status'] = status;
-        data['expiration_timestamp'] = expirationtimestamp;
-        data['created'] = created;
-        return data;
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+  String? get external_id {
+    try {
+      if (rawData["external_id"] is String == false){
+        return null;
+      }
+      return rawData["external_id"] as String;
+    } catch (e) {
+      return null;
     }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+  int? get amount {
+    try {
+      if (rawData["amount"] is int == false){
+        return null;
+      }
+      return rawData["amount"] as int;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+  String? get merchant_name {
+    try {
+      if (rawData["merchant_name"] is String == false){
+        return null;
+      }
+      return rawData["merchant_name"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+  String? get status {
+    try {
+      if (rawData["status"] is String == false){
+        return null;
+      }
+      return rawData["status"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+  String? get expiration_timestamp {
+    try {
+      if (rawData["expiration_timestamp"] is String == false){
+        return null;
+      }
+      return rawData["expiration_timestamp"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// full information [docs-ofc](https://developers.xendit.co/api-reference/#void-payout)
+  String? get created {
+    try {
+      if (rawData["created"] is String == false){
+        return null;
+      }
+      return rawData["created"] as String;
+    } catch (e) {
+      return null;
+    }
+  }
+
+
+  /// return original data json
+  Map toMap() {
+    return rawData;
+  }
+
+  /// return original data json
+  Map toJson() {
+    return rawData;
+  }
+
+  /// return string data encode json original data
+  @override
+  String toString() {
+    return json.encode(rawData);
+  }
 }
-
-
 
