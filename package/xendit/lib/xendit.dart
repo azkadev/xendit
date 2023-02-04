@@ -4,9 +4,7 @@ library xendit;
 
 import 'dart:convert';
 
-import 'package:galaxeus_lib/extension/regexp.dart';
 import 'package:http/http.dart';
-import 'package:xendit/scheme/create_pay_out_link.dart';
 // import 'package:xendit/scheme/create_invoice.dart';
 import "scheme/scheme.dart" as xendit_scheme;
 
@@ -78,6 +76,25 @@ class Xendit {
       });
     }
     return body;
+  }
+
+  Future<xendit_scheme.Balance> getBalance({
+    String forUserId = "",
+    required String account_type,
+  }) async {
+    Map jsonData = {
+      "account_type": account_type,
+    };
+    jsonData.removeValueNulls();
+    Map res = await invoke(
+      endpoint: "GET https://api.xendit.co/balance",
+      parameters: jsonData,
+    );
+
+    if (res["@type"] == "error") {
+      return await Future.error(XenditError(res));
+    }
+    return xendit_scheme.Balance(res.cast<String, dynamic>());
   }
 
   /// invoices

@@ -1,4 +1,5 @@
 export "account.dart";
+export "balance.dart";
 export "create_invoice.dart";
 export "create_pay_out_link.dart";
 // export "expire_invoice.dart"
