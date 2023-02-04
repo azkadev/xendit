@@ -81,14 +81,13 @@ class Xendit {
   Future<xendit_scheme.Balance> getBalance({
     String forUserId = "",
     required String account_type,
-  }) async {
-    Map jsonData = {
-      "account_type": account_type,
-    };
-    jsonData.removeValueNulls();
+  }) async { 
     Map res = await invoke(
-      endpoint: "GET https://api.xendit.co/balance",
-      parameters: jsonData,
+      endpoint: "GET https://api.xendit.co/balance?account_type=${account_type}",
+      headers: {
+
+        "for-user-id": forUserId,
+      }, 
     );
 
     if (res["@type"] == "error") {
