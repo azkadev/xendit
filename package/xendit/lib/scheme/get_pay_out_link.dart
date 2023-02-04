@@ -7,7 +7,19 @@ class GetPayOutLink {
   GetPayOutLink(this.rawData);
 
   static Map get defaultData {
-    return {"@type": "ok", "id": "acb0a7a4-82fb-47de-8d91-f302c5350cc6", "external_id": "saosaks", "amount": 50000, "merchant_name": "HEXAMINATE", "status": "PENDING", "expiration_timestamp": "2023-02-07T18:22:14.632Z", "created": "2023-02-04T18:22:13.249Z", "email": "", "payout_url": "https://payout-staging.xendit.co/web/acb0a7a4-82fb-47de-8d91-f302c5350cc6"};
+    return {
+      "@type": "ok",
+      "id": "acb0a7a4-82fb-47de-8d91-f302c5350cc6",
+      "external_id": "saosaks",
+      "amount": 50000,
+      "merchant_name": "HEXAMINATE",
+      "status": "PENDING",
+      "expiration_timestamp": "2023-02-07T18:22:14.632Z",
+      "created": "2023-02-04T18:22:13.249Z",
+      "email": "",
+      "payout_url":
+          "https://payout-staging.xendit.co/web/acb0a7a4-82fb-47de-8d91-f302c5350cc6"
+    };
   }
 
   String? get special_type {

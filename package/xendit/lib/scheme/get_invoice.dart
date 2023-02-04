@@ -14,16 +14,53 @@ class GetInvoice {
       "user_id": "610836e3824b6140a513dc38",
       "status": "PENDING",
       "merchant_name": "HEXAMINATE",
-      "merchant_profile_picture_url": "https://xnd-merchant-logos.s3.amazonaws.com/business/production/610836e3824b6140a513dc38-1648053563560.png",
+      "merchant_profile_picture_url":
+          "https://xnd-merchant-logos.s3.amazonaws.com/business/production/610836e3824b6140a513dc38-1648053563560.png",
       "amount": 100000,
       "expiry_date": "2023-02-05T18:08:16.896Z",
-      "invoice_url": "https://checkout-staging.xendit.co/web/63de9f1099c9419bdf5266c7",
+      "invoice_url":
+          "https://checkout-staging.xendit.co/web/63de9f1099c9419bdf5266c7",
       "available_banks": [
-        {"bank_code": "MANDIRI", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0},
-        {"bank_code": "BRI", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0},
-        {"bank_code": "BNI", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0},
-        {"bank_code": "PERMATA", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0},
-        {"bank_code": "BCA", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0}
+        {
+          "bank_code": "MANDIRI",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        },
+        {
+          "bank_code": "BRI",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        },
+        {
+          "bank_code": "BNI",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        },
+        {
+          "bank_code": "PERMATA",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        },
+        {
+          "bank_code": "BCA",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        }
       ],
       "available_retail_outlets": [
         {"retail_outlet_name": "ALFAMART"},
@@ -45,7 +82,12 @@ class GetInvoice {
       "created": "2023-02-04T18:08:17.642Z",
       "updated": "2023-02-04T18:08:17.642Z",
       "currency": "IDR",
-      "customer_notification_preference": {"invoice_created": [], "invoice_reminder": [], "invoice_expired": [], "invoice_paid": []}
+      "customer_notification_preference": {
+        "invoice_created": [],
+        "invoice_reminder": [],
+        "invoice_expired": [],
+        "invoice_paid": []
+      }
     };
   }
 
@@ -164,7 +206,10 @@ class GetInvoice {
       if (rawData["available_banks"] is List == false) {
         return [];
       }
-      return (rawData["available_banks"] as List).map((e) => GetInvoiceAvailableBanks(e as Map)).toList().cast<GetInvoiceAvailableBanks>();
+      return (rawData["available_banks"] as List)
+          .map((e) => GetInvoiceAvailableBanks(e as Map))
+          .toList()
+          .cast<GetInvoiceAvailableBanks>();
     } catch (e) {
       return [];
     }
@@ -175,7 +220,10 @@ class GetInvoice {
       if (rawData["available_retail_outlets"] is List == false) {
         return [];
       }
-      return (rawData["available_retail_outlets"] as List).map((e) => GetInvoiceAvailableRetailOutlets(e as Map)).toList().cast<GetInvoiceAvailableRetailOutlets>();
+      return (rawData["available_retail_outlets"] as List)
+          .map((e) => GetInvoiceAvailableRetailOutlets(e as Map))
+          .toList()
+          .cast<GetInvoiceAvailableRetailOutlets>();
     } catch (e) {
       return [];
     }
@@ -186,7 +234,10 @@ class GetInvoice {
       if (rawData["available_ewallets"] is List == false) {
         return [];
       }
-      return (rawData["available_ewallets"] as List).map((e) => GetInvoiceAvailableEwallets(e as Map)).toList().cast<GetInvoiceAvailableEwallets>();
+      return (rawData["available_ewallets"] as List)
+          .map((e) => GetInvoiceAvailableEwallets(e as Map))
+          .toList()
+          .cast<GetInvoiceAvailableEwallets>();
     } catch (e) {
       return [];
     }
@@ -197,7 +248,10 @@ class GetInvoice {
       if (rawData["available_qr_codes"] is List == false) {
         return [];
       }
-      return (rawData["available_qr_codes"] as List).map((e) => GetInvoiceAvailableQrCodes(e as Map)).toList().cast<GetInvoiceAvailableQrCodes>();
+      return (rawData["available_qr_codes"] as List)
+          .map((e) => GetInvoiceAvailableQrCodes(e as Map))
+          .toList()
+          .cast<GetInvoiceAvailableQrCodes>();
     } catch (e) {
       return [];
     }
@@ -280,12 +334,14 @@ class GetInvoice {
     }
   }
 
-  GetInvoiceCustomerNotificationPreference get customer_notification_preference {
+  GetInvoiceCustomerNotificationPreference
+      get customer_notification_preference {
     try {
       if (rawData["customer_notification_preference"] is Map == false) {
         return GetInvoiceCustomerNotificationPreference({});
       }
-      return GetInvoiceCustomerNotificationPreference(rawData["customer_notification_preference"] as Map);
+      return GetInvoiceCustomerNotificationPreference(
+          rawData["customer_notification_preference"] as Map);
     } catch (e) {
       return GetInvoiceCustomerNotificationPreference({});
     }
@@ -327,10 +383,21 @@ class GetInvoice {
       "amount": amount,
       "expiry_date": expiry_date,
       "invoice_url": invoice_url,
-      "available_banks": (available_banks != null) ? available_banks.map((res) => res!.toJson()).toList().cast<Map>() : null,
-      "available_retail_outlets": (available_retail_outlets != null) ? available_retail_outlets.map((res) => res!.toJson()).toList().cast<Map>() : null,
-      "available_ewallets": (available_ewallets != null) ? available_ewallets.map((res) => res!.toJson()).toList().cast<Map>() : null,
-      "available_qr_codes": (available_qr_codes != null) ? available_qr_codes.map((res) => res!.toJson()).toList().cast<Map>() : null,
+      "available_banks": (available_banks != null)
+          ? available_banks.map((res) => res!.toJson()).toList().cast<Map>()
+          : null,
+      "available_retail_outlets": (available_retail_outlets != null)
+          ? available_retail_outlets
+              .map((res) => res!.toJson())
+              .toList()
+              .cast<Map>()
+          : null,
+      "available_ewallets": (available_ewallets != null)
+          ? available_ewallets.map((res) => res!.toJson()).toList().cast<Map>()
+          : null,
+      "available_qr_codes": (available_qr_codes != null)
+          ? available_qr_codes.map((res) => res!.toJson()).toList().cast<Map>()
+          : null,
       "available_direct_debits": available_direct_debits,
       "available_paylaters": available_paylaters,
       "should_exclude_credit_card": should_exclude_credit_card,
@@ -338,7 +405,10 @@ class GetInvoice {
       "created": created,
       "updated": updated,
       "currency": currency,
-      "customer_notification_preference": (customer_notification_preference != null) ? customer_notification_preference.toJson() : null,
+      "customer_notification_preference":
+          (customer_notification_preference != null)
+              ? customer_notification_preference.toJson()
+              : null,
     };
 
     jsonCreate.forEach((key, value) {
@@ -386,7 +456,14 @@ class GetInvoiceAvailableBanks {
   GetInvoiceAvailableBanks(this.rawData);
 
   static Map get defaultData {
-    return {"bank_code": "MANDIRI", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0};
+    return {
+      "bank_code": "MANDIRI",
+      "collection_type": "POOL",
+      "transfer_amount": 100000,
+      "bank_branch": "Virtual Account",
+      "account_holder_name": "HEXAMINATE",
+      "identity_amount": 0
+    };
   }
 
   String? get bank_code {
@@ -546,7 +623,8 @@ class GetInvoiceAvailableRetailOutlets {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("GetInvoiceAvailableRetailOutlets ${e.toString()}, ${stack.toString()}");
+        print(
+            "GetInvoiceAvailableRetailOutlets ${e.toString()}, ${stack.toString()}");
       }
     });
     return GetInvoiceAvailableRetailOutlets(jsonData);
@@ -613,7 +691,8 @@ class GetInvoiceAvailableEwallets {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("GetInvoiceAvailableEwallets ${e.toString()}, ${stack.toString()}");
+        print(
+            "GetInvoiceAvailableEwallets ${e.toString()}, ${stack.toString()}");
       }
     });
     return GetInvoiceAvailableEwallets(jsonData);
@@ -680,7 +759,8 @@ class GetInvoiceAvailableQrCodes {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("GetInvoiceAvailableQrCodes ${e.toString()}, ${stack.toString()}");
+        print(
+            "GetInvoiceAvailableQrCodes ${e.toString()}, ${stack.toString()}");
       }
     });
     return GetInvoiceAvailableQrCodes(jsonData);
@@ -719,7 +799,12 @@ class GetInvoiceCustomerNotificationPreference {
   GetInvoiceCustomerNotificationPreference(this.rawData);
 
   static Map get defaultData {
-    return {"invoice_created": [], "invoice_reminder": [], "invoice_expired": [], "invoice_paid": []};
+    return {
+      "invoice_created": [],
+      "invoice_reminder": [],
+      "invoice_expired": [],
+      "invoice_paid": []
+    };
   }
 
   List<Object> get invoice_created {
@@ -786,7 +871,8 @@ class GetInvoiceCustomerNotificationPreference {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("GetInvoiceCustomerNotificationPreference ${e.toString()}, ${stack.toString()}");
+        print(
+            "GetInvoiceCustomerNotificationPreference ${e.toString()}, ${stack.toString()}");
       }
     });
     return GetInvoiceCustomerNotificationPreference(jsonData);

@@ -14,16 +14,53 @@ class ExpireInvoice {
       "user_id": "610836e3824b6140a513dc38",
       "status": "EXPIRED",
       "merchant_name": "HEXAMINATE",
-      "merchant_profile_picture_url": "https://xnd-merchant-logos.s3.amazonaws.com/business/production/610836e3824b6140a513dc38-1648053563560.png",
+      "merchant_profile_picture_url":
+          "https://xnd-merchant-logos.s3.amazonaws.com/business/production/610836e3824b6140a513dc38-1648053563560.png",
       "amount": 100000,
       "expiry_date": "2023-02-04T18:14:52.864Z",
-      "invoice_url": "https://checkout-staging.xendit.co/web/63de9f1099c9419bdf5266c7",
+      "invoice_url":
+          "https://checkout-staging.xendit.co/web/63de9f1099c9419bdf5266c7",
       "available_banks": [
-        {"bank_code": "MANDIRI", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0},
-        {"bank_code": "BRI", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0},
-        {"bank_code": "BNI", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0},
-        {"bank_code": "PERMATA", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0},
-        {"bank_code": "BCA", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0}
+        {
+          "bank_code": "MANDIRI",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        },
+        {
+          "bank_code": "BRI",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        },
+        {
+          "bank_code": "BNI",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        },
+        {
+          "bank_code": "PERMATA",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        },
+        {
+          "bank_code": "BCA",
+          "collection_type": "POOL",
+          "transfer_amount": 100000,
+          "bank_branch": "Virtual Account",
+          "account_holder_name": "HEXAMINATE",
+          "identity_amount": 0
+        }
       ],
       "available_retail_outlets": [
         {"retail_outlet_name": "ALFAMART"},
@@ -45,7 +82,12 @@ class ExpireInvoice {
       "created": "2023-02-04T18:08:17.642Z",
       "updated": "2023-02-04T18:14:52.865Z",
       "currency": "IDR",
-      "customer_notification_preference": {"invoice_created": [], "invoice_reminder": [], "invoice_expired": [], "invoice_paid": []},
+      "customer_notification_preference": {
+        "invoice_created": [],
+        "invoice_reminder": [],
+        "invoice_expired": [],
+        "invoice_paid": []
+      },
     };
   }
 
@@ -164,7 +206,10 @@ class ExpireInvoice {
       if (rawData["available_banks"] is List == false) {
         return [];
       }
-      return (rawData["available_banks"] as List).map((e) => ExpireInvoiceAvailableBanks(e as Map)).toList().cast<ExpireInvoiceAvailableBanks>();
+      return (rawData["available_banks"] as List)
+          .map((e) => ExpireInvoiceAvailableBanks(e as Map))
+          .toList()
+          .cast<ExpireInvoiceAvailableBanks>();
     } catch (e) {
       return [];
     }
@@ -175,7 +220,10 @@ class ExpireInvoice {
       if (rawData["available_retail_outlets"] is List == false) {
         return [];
       }
-      return (rawData["available_retail_outlets"] as List).map((e) => ExpireInvoiceAvailableRetailOutlets(e as Map)).toList().cast<ExpireInvoiceAvailableRetailOutlets>();
+      return (rawData["available_retail_outlets"] as List)
+          .map((e) => ExpireInvoiceAvailableRetailOutlets(e as Map))
+          .toList()
+          .cast<ExpireInvoiceAvailableRetailOutlets>();
     } catch (e) {
       return [];
     }
@@ -186,7 +234,10 @@ class ExpireInvoice {
       if (rawData["available_ewallets"] is List == false) {
         return [];
       }
-      return (rawData["available_ewallets"] as List).map((e) => ExpireInvoiceAvailableEwallets(e as Map)).toList().cast<ExpireInvoiceAvailableEwallets>();
+      return (rawData["available_ewallets"] as List)
+          .map((e) => ExpireInvoiceAvailableEwallets(e as Map))
+          .toList()
+          .cast<ExpireInvoiceAvailableEwallets>();
     } catch (e) {
       return [];
     }
@@ -197,7 +248,10 @@ class ExpireInvoice {
       if (rawData["available_qr_codes"] is List == false) {
         return [];
       }
-      return (rawData["available_qr_codes"] as List).map((e) => ExpireInvoiceAvailableQrCodes(e as Map)).toList().cast<ExpireInvoiceAvailableQrCodes>();
+      return (rawData["available_qr_codes"] as List)
+          .map((e) => ExpireInvoiceAvailableQrCodes(e as Map))
+          .toList()
+          .cast<ExpireInvoiceAvailableQrCodes>();
     } catch (e) {
       return [];
     }
@@ -280,12 +334,14 @@ class ExpireInvoice {
     }
   }
 
-  ExpireInvoiceCustomerNotificationPreference get customer_notification_preference {
+  ExpireInvoiceCustomerNotificationPreference
+      get customer_notification_preference {
     try {
       if (rawData["customer_notification_preference"] is Map == false) {
         return ExpireInvoiceCustomerNotificationPreference({});
       }
-      return ExpireInvoiceCustomerNotificationPreference(rawData["customer_notification_preference"] as Map);
+      return ExpireInvoiceCustomerNotificationPreference(
+          rawData["customer_notification_preference"] as Map);
     } catch (e) {
       return ExpireInvoiceCustomerNotificationPreference({});
     }
@@ -313,7 +369,8 @@ class ExpireInvoice {
     String? created,
     String? updated,
     String? currency,
-    ExpireInvoiceCustomerNotificationPreference? customer_notification_preference,
+    ExpireInvoiceCustomerNotificationPreference?
+        customer_notification_preference,
   }) {
     Map jsonData = ExpireInvoice.defaultData;
     Map jsonCreate = {
@@ -327,10 +384,21 @@ class ExpireInvoice {
       "amount": amount,
       "expiry_date": expiry_date,
       "invoice_url": invoice_url,
-      "available_banks": (available_banks != null) ? available_banks.map((res) => res!.toJson()).toList().cast<Map>() : null,
-      "available_retail_outlets": (available_retail_outlets != null) ? available_retail_outlets.map((res) => res!.toJson()).toList().cast<Map>() : null,
-      "available_ewallets": (available_ewallets != null) ? available_ewallets.map((res) => res!.toJson()).toList().cast<Map>() : null,
-      "available_qr_codes": (available_qr_codes != null) ? available_qr_codes.map((res) => res!.toJson()).toList().cast<Map>() : null,
+      "available_banks": (available_banks != null)
+          ? available_banks.map((res) => res!.toJson()).toList().cast<Map>()
+          : null,
+      "available_retail_outlets": (available_retail_outlets != null)
+          ? available_retail_outlets
+              .map((res) => res!.toJson())
+              .toList()
+              .cast<Map>()
+          : null,
+      "available_ewallets": (available_ewallets != null)
+          ? available_ewallets.map((res) => res!.toJson()).toList().cast<Map>()
+          : null,
+      "available_qr_codes": (available_qr_codes != null)
+          ? available_qr_codes.map((res) => res!.toJson()).toList().cast<Map>()
+          : null,
       "available_direct_debits": available_direct_debits,
       "available_paylaters": available_paylaters,
       "should_exclude_credit_card": should_exclude_credit_card,
@@ -338,7 +406,10 @@ class ExpireInvoice {
       "created": created,
       "updated": updated,
       "currency": currency,
-      "customer_notification_preference": (customer_notification_preference != null) ? customer_notification_preference.toJson() : null,
+      "customer_notification_preference":
+          (customer_notification_preference != null)
+              ? customer_notification_preference.toJson()
+              : null,
     };
 
     jsonCreate.forEach((key, value) {
@@ -386,7 +457,14 @@ class ExpireInvoiceAvailableBanks {
   ExpireInvoiceAvailableBanks(this.rawData);
 
   static Map get defaultData {
-    return {"bank_code": "MANDIRI", "collection_type": "POOL", "transfer_amount": 100000, "bank_branch": "Virtual Account", "account_holder_name": "HEXAMINATE", "identity_amount": 0};
+    return {
+      "bank_code": "MANDIRI",
+      "collection_type": "POOL",
+      "transfer_amount": 100000,
+      "bank_branch": "Virtual Account",
+      "account_holder_name": "HEXAMINATE",
+      "identity_amount": 0
+    };
   }
 
   String? get bank_code {
@@ -479,7 +557,8 @@ class ExpireInvoiceAvailableBanks {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("ExpireInvoiceAvailableBanks ${e.toString()}, ${stack.toString()}");
+        print(
+            "ExpireInvoiceAvailableBanks ${e.toString()}, ${stack.toString()}");
       }
     });
     return ExpireInvoiceAvailableBanks(jsonData);
@@ -546,7 +625,8 @@ class ExpireInvoiceAvailableRetailOutlets {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("ExpireInvoiceAvailableRetailOutlets ${e.toString()}, ${stack.toString()}");
+        print(
+            "ExpireInvoiceAvailableRetailOutlets ${e.toString()}, ${stack.toString()}");
       }
     });
     return ExpireInvoiceAvailableRetailOutlets(jsonData);
@@ -613,7 +693,8 @@ class ExpireInvoiceAvailableEwallets {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("ExpireInvoiceAvailableEwallets ${e.toString()}, ${stack.toString()}");
+        print(
+            "ExpireInvoiceAvailableEwallets ${e.toString()}, ${stack.toString()}");
       }
     });
     return ExpireInvoiceAvailableEwallets(jsonData);
@@ -680,7 +761,8 @@ class ExpireInvoiceAvailableQrCodes {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("ExpireInvoiceAvailableQrCodes ${e.toString()}, ${stack.toString()}");
+        print(
+            "ExpireInvoiceAvailableQrCodes ${e.toString()}, ${stack.toString()}");
       }
     });
     return ExpireInvoiceAvailableQrCodes(jsonData);
@@ -719,7 +801,12 @@ class ExpireInvoiceCustomerNotificationPreference {
   ExpireInvoiceCustomerNotificationPreference(this.rawData);
 
   static Map get defaultData {
-    return {"invoice_created": [], "invoice_reminder": [], "invoice_expired": [], "invoice_paid": []};
+    return {
+      "invoice_created": [],
+      "invoice_reminder": [],
+      "invoice_expired": [],
+      "invoice_paid": []
+    };
   }
 
   List<Object> get invoice_created {
@@ -786,7 +873,8 @@ class ExpireInvoiceCustomerNotificationPreference {
           jsonData[key] = value;
         }
       } catch (e, stack) {
-        print("ExpireInvoiceCustomerNotificationPreference ${e.toString()}, ${stack.toString()}");
+        print(
+            "ExpireInvoiceCustomerNotificationPreference ${e.toString()}, ${stack.toString()}");
       }
     });
     return ExpireInvoiceCustomerNotificationPreference(jsonData);

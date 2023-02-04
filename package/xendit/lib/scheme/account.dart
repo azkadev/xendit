@@ -1,22 +1,28 @@
 // ignore_for_file: non_constant_identifier_names
 import 'dart:convert';
 
-
-
 class Account {
   Map rawData;
 
-  
   Account(this.rawData);
-   
+
   static Map get defaultData {
-    return {"@type":"ok","id":"63dea4d4adffcf7008873f2e","created":"2023-02-04T18:32:52.889Z","updated":"2023-02-04T18:32:52.889Z","email":"jognitedev@gmail.com","type":"OWNED","public_profile":{"business_name":"RP"},"country":"ID","status":"REGISTERED"};
+    return {
+      "@type": "ok",
+      "id": "63dea4d4adffcf7008873f2e",
+      "created": "2023-02-04T18:32:52.889Z",
+      "updated": "2023-02-04T18:32:52.889Z",
+      "email": "jognitedev@gmail.com",
+      "type": "OWNED",
+      "public_profile": {"business_name": "RP"},
+      "country": "ID",
+      "status": "REGISTERED"
+    };
   }
 
-  
   String? get special_type {
     try {
-      if (rawData["@type"] is String == false){
+      if (rawData["@type"] is String == false) {
         return null;
       }
       return rawData["@type"] as String;
@@ -25,11 +31,9 @@ class Account {
     }
   }
 
-
-  
   String? get id {
     try {
-      if (rawData["id"] is String == false){
+      if (rawData["id"] is String == false) {
         return null;
       }
       return rawData["id"] as String;
@@ -38,11 +42,9 @@ class Account {
     }
   }
 
-
-  
   String? get created {
     try {
-      if (rawData["created"] is String == false){
+      if (rawData["created"] is String == false) {
         return null;
       }
       return rawData["created"] as String;
@@ -51,11 +53,9 @@ class Account {
     }
   }
 
-
-  
   String? get updated {
     try {
-      if (rawData["updated"] is String == false){
+      if (rawData["updated"] is String == false) {
         return null;
       }
       return rawData["updated"] as String;
@@ -64,11 +64,9 @@ class Account {
     }
   }
 
-
-  
   String? get email {
     try {
-      if (rawData["email"] is String == false){
+      if (rawData["email"] is String == false) {
         return null;
       }
       return rawData["email"] as String;
@@ -77,11 +75,9 @@ class Account {
     }
   }
 
-
-  
   String? get type {
     try {
-      if (rawData["type"] is String == false){
+      if (rawData["type"] is String == false) {
         return null;
       }
       return rawData["type"] as String;
@@ -90,24 +86,20 @@ class Account {
     }
   }
 
-
-  
   AccountPublicProfile get public_profile {
     try {
-      if (rawData["public_profile"] is Map == false){
-        return AccountPublicProfile({}); 
+      if (rawData["public_profile"] is Map == false) {
+        return AccountPublicProfile({});
       }
       return AccountPublicProfile(rawData["public_profile"] as Map);
-    } catch (e) {  
-      return AccountPublicProfile({}); 
+    } catch (e) {
+      return AccountPublicProfile({});
     }
   }
 
-
-  
   String? get country {
     try {
-      if (rawData["country"] is String == false){
+      if (rawData["country"] is String == false) {
         return null;
       }
       return rawData["country"] as String;
@@ -116,11 +108,9 @@ class Account {
     }
   }
 
-
-  
   String? get status {
     try {
-      if (rawData["status"] is String == false){
+      if (rawData["status"] is String == false) {
         return null;
       }
       return rawData["status"] as String;
@@ -129,35 +119,30 @@ class Account {
     }
   }
 
-
-  
   static Account create({
-
     String? special_type,
     String? id,
     String? created,
     String? updated,
     String? email,
     String? type,
-      AccountPublicProfile? public_profile,
+    AccountPublicProfile? public_profile,
     String? country,
     String? status,
-})  {    Map jsonData = Account.defaultData;
+  }) {
+    Map jsonData = Account.defaultData;
     Map jsonCreate = {
-  
       "@type": special_type,
       "id": id,
       "created": created,
       "updated": updated,
       "email": email,
       "type": type,
-      "public_profile": (public_profile != null)?public_profile.toJson(): null,
+      "public_profile":
+          (public_profile != null) ? public_profile.toJson() : null,
       "country": country,
       "status": status,
-
-
-  };
-
+    };
 
     jsonCreate.forEach((key, value) {
       try {
@@ -168,14 +153,14 @@ class Account {
         print("Account ${e.toString()}, ${stack.toString()}");
       }
     });
-return Account(jsonData);
+    return Account(jsonData);
+  }
 
-      }
   /// operator map data
-   operator [](key) {
+  operator [](key) {
     return rawData[key];
   }
- 
+
   /// operator map data
   void operator []=(key, value) {
     rawData[key] = value;
@@ -198,24 +183,18 @@ return Account(jsonData);
   }
 }
 
-
-
-
-
 class AccountPublicProfile {
   Map rawData;
 
-  
   AccountPublicProfile(this.rawData);
-   
+
   static Map get defaultData {
-    return {"business_name":"RP"};
+    return {"business_name": "RP"};
   }
 
-  
   String? get business_name {
     try {
-      if (rawData["business_name"] is String == false){
+      if (rawData["business_name"] is String == false) {
         return null;
       }
       return rawData["business_name"] as String;
@@ -224,19 +203,13 @@ class AccountPublicProfile {
     }
   }
 
-
-  
   static AccountPublicProfile create({
-
     String? business_name,
-})  {    Map jsonData = AccountPublicProfile.defaultData;
+  }) {
+    Map jsonData = AccountPublicProfile.defaultData;
     Map jsonCreate = {
-  
       "business_name": business_name,
-
-
-  };
-
+    };
 
     jsonCreate.forEach((key, value) {
       try {
@@ -247,14 +220,14 @@ class AccountPublicProfile {
         print("AccountPublicProfile ${e.toString()}, ${stack.toString()}");
       }
     });
-return AccountPublicProfile(jsonData);
+    return AccountPublicProfile(jsonData);
+  }
 
-      }
   /// operator map data
-   operator [](key) {
+  operator [](key) {
     return rawData[key];
   }
- 
+
   /// operator map data
   void operator []=(key, value) {
     rawData[key] = value;
@@ -276,4 +249,3 @@ return AccountPublicProfile(jsonData);
     return json.encode(rawData);
   }
 }
-

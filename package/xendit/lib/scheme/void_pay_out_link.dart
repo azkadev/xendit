@@ -7,7 +7,17 @@ class VoidPayOutLink {
   VoidPayOutLink(this.rawData);
 
   static Map get defaultData {
-    return {"@type": "ok", "id": "acb0a7a4-82fb-47de-8d91-f302c5350cc6", "external_id": "saosaks", "amount": 50000, "merchant_name": "HEXAMINATE", "status": "VOIDED", "expiration_timestamp": "2023-02-07T18:22:14.632Z", "created": "2023-02-04T18:22:13.249Z", "email": ""};
+    return {
+      "@type": "ok",
+      "id": "acb0a7a4-82fb-47de-8d91-f302c5350cc6",
+      "external_id": "saosaks",
+      "amount": 50000,
+      "merchant_name": "HEXAMINATE",
+      "status": "VOIDED",
+      "expiration_timestamp": "2023-02-07T18:22:14.632Z",
+      "created": "2023-02-04T18:22:13.249Z",
+      "email": ""
+    };
   }
 
   String? get special_type {

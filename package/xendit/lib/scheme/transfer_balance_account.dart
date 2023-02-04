@@ -1,22 +1,26 @@
 // ignore_for_file: non_constant_identifier_names
 import 'dart:convert';
 
-
-
 class TransferBalanceAccount {
   Map rawData;
 
-  
   TransferBalanceAccount(this.rawData);
-   
+
   static Map get defaultData {
-    return {"created":"2020-01-01T08:51:44.484Z","transfer_id":"60b9d810-d9a3-456c-abbf-2786ec7a9651","reference":"transfer001","source_user_id":"54afeb170a2b18519b1b8768","destination_user_id":"5cafeb170a2b1851246b8768","status":"SUCCESSFUL","amount":10000};
+    return {
+      "created": "2020-01-01T08:51:44.484Z",
+      "transfer_id": "60b9d810-d9a3-456c-abbf-2786ec7a9651",
+      "reference": "transfer001",
+      "source_user_id": "54afeb170a2b18519b1b8768",
+      "destination_user_id": "5cafeb170a2b1851246b8768",
+      "status": "SUCCESSFUL",
+      "amount": 10000
+    };
   }
 
-  
   String? get created {
     try {
-      if (rawData["created"] is String == false){
+      if (rawData["created"] is String == false) {
         return null;
       }
       return rawData["created"] as String;
@@ -25,11 +29,9 @@ class TransferBalanceAccount {
     }
   }
 
-
-  
   String? get transfer_id {
     try {
-      if (rawData["transfer_id"] is String == false){
+      if (rawData["transfer_id"] is String == false) {
         return null;
       }
       return rawData["transfer_id"] as String;
@@ -38,11 +40,9 @@ class TransferBalanceAccount {
     }
   }
 
-
-  
   String? get reference {
     try {
-      if (rawData["reference"] is String == false){
+      if (rawData["reference"] is String == false) {
         return null;
       }
       return rawData["reference"] as String;
@@ -51,11 +51,9 @@ class TransferBalanceAccount {
     }
   }
 
-
-  
   String? get source_user_id {
     try {
-      if (rawData["source_user_id"] is String == false){
+      if (rawData["source_user_id"] is String == false) {
         return null;
       }
       return rawData["source_user_id"] as String;
@@ -64,11 +62,9 @@ class TransferBalanceAccount {
     }
   }
 
-
-  
   String? get destination_user_id {
     try {
-      if (rawData["destination_user_id"] is String == false){
+      if (rawData["destination_user_id"] is String == false) {
         return null;
       }
       return rawData["destination_user_id"] as String;
@@ -77,11 +73,9 @@ class TransferBalanceAccount {
     }
   }
 
-
-  
   String? get status {
     try {
-      if (rawData["status"] is String == false){
+      if (rawData["status"] is String == false) {
         return null;
       }
       return rawData["status"] as String;
@@ -90,11 +84,9 @@ class TransferBalanceAccount {
     }
   }
 
-
-  
   int? get amount {
     try {
-      if (rawData["amount"] is int == false){
+      if (rawData["amount"] is int == false) {
         return null;
       }
       return rawData["amount"] as int;
@@ -103,10 +95,7 @@ class TransferBalanceAccount {
     }
   }
 
-
-  
   static TransferBalanceAccount create({
-
     String? created,
     String? transfer_id,
     String? reference,
@@ -114,9 +103,9 @@ class TransferBalanceAccount {
     String? destination_user_id,
     String? status,
     int? amount,
-})  {    Map jsonData = TransferBalanceAccount.defaultData;
+  }) {
+    Map jsonData = TransferBalanceAccount.defaultData;
     Map jsonCreate = {
-  
       "created": created,
       "transfer_id": transfer_id,
       "reference": reference,
@@ -124,10 +113,7 @@ class TransferBalanceAccount {
       "destination_user_id": destination_user_id,
       "status": status,
       "amount": amount,
-
-
-  };
-
+    };
 
     jsonCreate.forEach((key, value) {
       try {
@@ -138,14 +124,14 @@ class TransferBalanceAccount {
         print("TransferBalanceAccount ${e.toString()}, ${stack.toString()}");
       }
     });
-return TransferBalanceAccount(jsonData);
+    return TransferBalanceAccount(jsonData);
+  }
 
-      }
   /// operator map data
-   operator [](key) {
+  operator [](key) {
     return rawData[key];
   }
- 
+
   /// operator map data
   void operator []=(key, value) {
     rawData[key] = value;
@@ -167,4 +153,3 @@ return TransferBalanceAccount(jsonData);
     return json.encode(rawData);
   }
 }
-

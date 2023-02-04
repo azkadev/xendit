@@ -1,10 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 import 'dart:convert';
 
-class createPayOutLink {
+class CreatePayOutLink {
   Map rawData;
 
-  createPayOutLink(this.rawData);
+  CreatePayOutLink(this.rawData);
 
   static Map get defaultData {
     return {
@@ -17,7 +17,8 @@ class createPayOutLink {
       "expiration_timestamp": "2023-02-07T18:22:14.632Z",
       "created": "2023-02-04T18:22:13.249Z",
       "email": "",
-      "payout_url": "https://payout-staging.xendit.co/web/acb0a7a4-82fb-47de-8d91-f302c5350cc6",
+      "payout_url":
+          "https://payout-staging.xendit.co/web/acb0a7a4-82fb-47de-8d91-f302c5350cc6",
     };
   }
 
@@ -131,7 +132,7 @@ class createPayOutLink {
     }
   }
 
-  static createPayOutLink create({
+  static CreatePayOutLink create({
     String? special_type,
     String? id,
     String? external_id,
@@ -143,7 +144,7 @@ class createPayOutLink {
     String? email,
     String? payout_url,
   }) {
-    Map jsonData = createPayOutLink.defaultData;
+    Map jsonData = CreatePayOutLink.defaultData;
     Map jsonCreate = {
       "@type": special_type,
       "id": id,
@@ -166,7 +167,7 @@ class createPayOutLink {
         print("createPayOutLink ${e.toString()}, ${stack.toString()}");
       }
     });
-    return createPayOutLink(jsonData);
+    return CreatePayOutLink(jsonData);
   }
 
   /// operator map data

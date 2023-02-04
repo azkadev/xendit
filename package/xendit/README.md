@@ -11,41 +11,29 @@ dart pub add xendit
 ### Quickstart
 
 ```bash
-// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages, avoid_print
 import 'dart:convert';
+import 'dart:io';
+
 import 'package:xendit/xendit.dart';
+import "package:galaxeus_lib/galaxeus_lib.dart";
+
 void main() async {
-  var xen_key_test = "xnd_development_M34343rtrtgjgthhthpeahsweweZrer2IehTPGUMWTtcCmzLSASoBJLf5xg3NMb1YaXWrXKrO";
-  Xendit xendit = Xendit(xen_key_test);
-  Map res = await xendit.request(
-    "v2/invoices",
-    methodRequest: "post",
+  Xendit xendit = Xendit(apiKey: "xnd_development_iI9cluwTFSNoF9xUlJFxOYvMAD21WV6OHv1oMKKkSAEtdf2QQG0yVnS6BLMkn");
+  var res = await xendit.invoke(
+    endpoint: "POST https://api.xendit.co/v2/invoices",
     headers: {
-      // optional
-      "for-user-id": "xenplatform_user_id1213",
+      "for-user-id": "",
     },
     parameters: {
-      "external_id": "exstesa",
-      "amount": 1000,
-    },
-  );
-  print(json.encode(res));
-  Map getInvoices = await xendit.request(
-    "v2/invoices",
-    methodRequest: "get",
-    headers: {
-      // optional
-      "for-user-id": "xenplatform_user_id1213",
+      "external_id": "asoaskoaks",
+      "amount": 10000,
     },
     queryParameters: {
-      "external_id": "exstesa",
-    },
+      "id": "saksoak"
+    }
   );
-  GetInvoiceResponse getInvoiceResponse = GetInvoiceResponse(getInvoices);
-  print(getInvoiceResponse.toJson());
-  PayoutResponse payoutResponse = await xendit.createPayout(external_id: "external_id", amount: 10000, email: "hai@gmail.com");
-  payoutResponse.payout_url;
-  print(payoutResponse.toJson());
+
+  print(res);
 }
 ```
 

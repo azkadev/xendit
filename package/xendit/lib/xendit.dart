@@ -31,9 +31,15 @@ class Xendit {
     parameters ??= {};
     headers ??= {};
     apiKey ??= api_key;
-    String methodRequest = (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false).stringMatch(endpoint) ?? "get").toLowerCase().replaceAll(RegExp(r"([ ]+)?", caseSensitive: false), "");
+    String methodRequest =
+        (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false)
+                    .stringMatch(endpoint) ??
+                "get")
+            .toLowerCase()
+            .replaceAll(RegExp(r"([ ]+)?", caseSensitive: false), "");
     String url = "https://api.xendit.co";
-    url = endpoint.replaceAll(RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
+    url = endpoint.replaceAll(
+        RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
     Map<String, String> headersOption = {
       "Authorization": "Basic ${base64.encode(utf8.encode("${apiKey}:"))}",
       "Content-Type": 'application/json',
@@ -45,9 +51,11 @@ class Xendit {
     if (methodRequest == "get") {
       result = await get(urlApi, headers: headersOption);
     } else if (methodRequest == "post") {
-      result = await post(urlApi, headers: headersOption, body: json.encode(parameters));
+      result = await post(urlApi,
+          headers: headersOption, body: json.encode(parameters));
     } else if (methodRequest == "patch") {
-      result = await patch(urlApi, headers: headersOption, body: json.encode(parameters));
+      result = await patch(urlApi,
+          headers: headersOption, body: json.encode(parameters));
     } else {
       result = await get(urlApi, headers: headersOption);
     }
@@ -185,7 +193,7 @@ class Xendit {
     return xendit_scheme.ListAllInvoice(res.cast<String, dynamic>());
   }
 
-  Future<xendit_scheme.createPayOutLink> createPayOutLink({
+  Future<xendit_scheme.CreatePayOutLink> createPayOutLink({
     String forUserId = "",
     required String external_id,
     required int amount,
@@ -206,7 +214,7 @@ class Xendit {
     if (res["@type"] == "error") {
       return await Future.error(XenditError(res));
     }
-    return xendit_scheme.createPayOutLink(res.cast<String, dynamic>());
+    return xendit_scheme.CreatePayOutLink(res.cast<String, dynamic>());
   }
 
   Future<xendit_scheme.GetPayOutLink> getPayOutLink({
@@ -324,7 +332,8 @@ class Xendit {
   Future<xendit_scheme.TransferBalanceAccount> getTransferBalanceAccount({
     required String reference,
   }) async {
-    Map res = await invoke(endpoint: "GET https://api.xendit.co/transfers/reference=${reference}");
+    Map res = await invoke(
+        endpoint: "GET https://api.xendit.co/transfers/reference=${reference}");
 
     if (res["@type"] == "error") {
       return await Future.error(XenditError(res));
