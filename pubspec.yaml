@@ -6,9 +6,11 @@ repository: https://github.com/azkadev/xendit/
 issue_tracker: https://github.com/azkadev/xendit/issues
 
 environment:
-  sdk: '>=2.16.0 <3.0.0'
+  sdk: '>=2.19.0 <3.0.0'
 
 dev_dependencies:
   lints: ^2.0.0
+
 dependencies: 
+  galaxeus_lib: ^0.0.47
   http: ^0.13.5

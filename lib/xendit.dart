@@ -1,9 +1,10 @@
-// ignore_for_file: non_constant_identifier_names, empty_catches
+// ignore_for_file: non_constant_identifier_names, empty_catches, unnecessary_brace_in_string_interps
 
 library xendit;
 
 import 'dart:convert';
 
+import 'package:galaxeus_lib/extension/regexp.dart';
 import 'package:http/http.dart';
 
 part 'src/object/balance.dart';
@@ -17,46 +18,52 @@ part 'src/object/xentplatform_transfer.dart';
 
 /// xendit helo world heo gais
 class Xendit {
-  late String apiKey;
+  late String api_key;
 
   /// xendit helo world heo gais
-  Xendit(this.apiKey);
+  Xendit({required String apiKey}) {
+    api_key = apiKey;
+  }
 
   /// request method support all update
-  Future<Map> request(
-    String method, {
+  Future<Map> request({
+    /// GET https://api.xendit.co/v2/invoices/{invoice_id}
+    required String endpoint,
     Map? parameters,
     Map<String, String>? headers,
-    String methodRequest = "get",
-    Map<String, dynamic>? queryParameters,
+    Map<String, String>? queryParameters,
+    String? apiKey,
   }) async {
     parameters ??= {};
     headers ??= {};
-    var url = "https://api.xendit.co/$method";
+    apiKey ??= api_key; 
+    String methodRequest  = (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false).stringMatch(endpoint) ?? "get").toLowerCase();
+    String url = "https://api.xendit.co";
+    endpoint = endpoint.replaceAll(RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
+
     Map<String, String> headersOption = {
-      "Authorization": "Basic ${base64.encode(utf8.encode("$apiKey:"))}",
+      "Authorization": "Basic ${base64.encode(utf8.encode("${apiKey}:"))}",
       "Content-Type": 'application/json',
       ...headers,
     };
-    late Map json_respond = {
+    Map json_respond = {
+      "@type": "ok",
       "status_code": 200,
       "status_bool": true,
-      "result": {}
+      "result": {},
     };
     late Response result;
     Uri urlApi = Uri.parse(url).replace(queryParameters: queryParameters);
     if (methodRequest == "get") {
       result = await get(urlApi, headers: headersOption);
     } else if (methodRequest == "post") {
-      result = await post(urlApi,
-          headers: headersOption, body: json.encode(parameters));
+      result = await post(urlApi, headers: headersOption, body: json.encode(parameters));
     } else if (methodRequest == "patch") {
-      result = await patch(urlApi,
-          headers: headersOption, body: json.encode(parameters));
+      result = await patch(urlApi, headers: headersOption, body: json.encode(parameters));
     } else {
       result = await get(urlApi, headers: headersOption);
     }
-    late Map body = {
+    Map body = {
       "@type": "ok",
     };
     if (result.statusCode != 200) {
@@ -65,7 +72,7 @@ class Xendit {
     try {
       body.addAll(json.decode(result.body));
     } catch (e) {
-      body.addAll({"message": "$e"});
+      body.addAll({"message": "${e}"});
     }
     return body;
   }
@@ -118,13 +125,12 @@ class Xendit {
       "should_authenticate_credit_card": should_authenticate_credit_card,
     };
     jsonData.removeValueNulls();
-    Map res = await request(
-      "v2/invoices",
+    Map res = await request( 
+      endpoint: "POST https://api.xendit.co/v2/invoices",
       headers: {
         "for-user-id": forUserId,
         "with-fee-rule": withFeeRule,
-      },
-      methodRequest: "post",
+      }, 
       parameters: jsonData,
     );
 
@@ -140,11 +146,12 @@ class Xendit {
     required String invoiceId,
   }) async {
     Map res = await request(
-      "v2/invoices/$invoiceId",
+      // "v2/invoices/$invoiceId",
+      endpoint: "GET https://api.xendit.co/v2/invoices/${invoiceId}",
       headers: {
         "for-user-id": forUserId,
       },
-      methodRequest: "get",
+      //
     );
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
@@ -158,11 +165,12 @@ class Xendit {
     required String external_id,
   }) async {
     return await request(
-      "v2/invoices",
+      // "v2/invoices", 
+      endpoint: "GET https://api.xendit.co/v2/invoices",
       headers: {
         "for-user-id": forUserId,
       },
-      methodRequest: "get",
+      //
       queryParameters: {
         "external_id": external_id,
       },
@@ -174,27 +182,26 @@ class Xendit {
     String forUserId = "",
     required String invoiceId,
   }) async {
-    late Map<String, dynamic> jsonData = {};
+    Map<String, String> jsonData = {};
     jsonData.removeValueNulls();
-    return await request(
-      "v2/invoices/$invoiceId",
+    return await request( 
+      endpoint: "GET https://api.xendit.co/v2/invoices/${invoiceId}",
       headers: {
         "for-user-id": forUserId,
       },
-      methodRequest: "get",
+     
       queryParameters: jsonData,
     );
   }
 
   /// untuk membuat invoice expired
-  Future<ExpireInvoiceResponse> expireInvoices(
-      {String forUserId = "", required String invoiceId}) async {
+  Future<ExpireInvoiceResponse> expireInvoices({String forUserId = "", required String invoiceId}) async {
     Map res = await request(
-      "v2/invoices/$invoiceId/expire!",
+      endpoint: "POST https://api.xendit.co/invoices/${invoiceId}/expire!",
       headers: {
         "for-user-id": forUserId,
       },
-      methodRequest: "get",
+     
     );
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
@@ -214,7 +221,7 @@ class Xendit {
       headers: {
         "for-user-id": forUserId,
       },
-      methodRequest: "post",
+     
       parameters: {
         "external_id": external_id,
         "amount": amount,
@@ -238,7 +245,7 @@ class Xendit {
       headers: {
         "for-user-id": forUserId,
       },
-      methodRequest: "get",
+     
     );
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
@@ -256,7 +263,7 @@ class Xendit {
       headers: {
         "for-user-id": forUserId,
       },
-      methodRequest: "get",
+     
     );
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
@@ -270,7 +277,7 @@ class Xendit {
     String type = "OWNED",
     required String business_name,
   }) async {
-    Map res = await request("v2/accounts", methodRequest: "post", parameters: {
+    Map res = await request("v2/accounts", parameters: {
       "email": email,
       "type": type,
       "public_profile": {
@@ -289,7 +296,7 @@ class Xendit {
   }) async {
     Map res = await request(
       "v2/accounts/$id",
-      methodRequest: "get",
+     
     );
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
@@ -303,8 +310,7 @@ class Xendit {
     required String email,
     required String business_name,
   }) async {
-    Map res =
-        await request("v2/accounts/$id", methodRequest: "patch", parameters: {
+    Map res = await request("v2/accounts/$id", methodRequest: "patch", parameters: {
       "email": email,
       "public_profile": {
         "business_name": business_name,
@@ -323,7 +329,7 @@ class Xendit {
     required String source_user_id,
     required String destination_user_id,
   }) async {
-    Map res = await request("transfers", methodRequest: "post", parameters: {
+    Map res = await request("transfers", parameters: {
       "reference": reference,
       "amount": amount,
       "source_user_id": source_user_id,
@@ -336,9 +342,8 @@ class Xendit {
   }
 
   /// untuk check saldo
-  Future<GetBalanceResponse> getBalance(
-      {String forUserId = "", String account_type = "CASH"}) async {
-    Map res = await request("balance", methodRequest: "get", queryParameters: {
+  Future<GetBalanceResponse> getBalance({String forUserId = "", String account_type = "CASH"}) async {
+    Map res = await request("balance", queryParameters: {
       "account_type": account_type,
     }, headers: {
       "for-user-id": forUserId
@@ -353,8 +358,7 @@ class Xendit {
   Future<XenPlatFormCreateTransferResponse> getTransfer({
     required String reference,
   }) async {
-    Map res =
-        await request("transfers/reference=$reference", methodRequest: "get");
+    Map res = await request("transfers/reference=$reference", methodRequest: "get");
     if (res["@type"] == "error") {
       return Future.error(XenditError(res));
     }
@@ -369,7 +373,7 @@ class Xendit {
     required num amount,
     required String currency,
   }) async {
-    Map res = await request("fee_rules", methodRequest: "post", parameters: {
+    Map res = await request("fee_rules", parameters: {
       "name": name,
       "description": description,
       "routes": [
