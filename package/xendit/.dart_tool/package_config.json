@@ -14,28 +14,10 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "crypto",
-      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dev/crypto-3.0.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
-      "name": "csslib",
-      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dev/csslib-0.17.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "galaxeus_lib",
-      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dev/galaxeus_lib-0.0.47",
+      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dev/galaxeus_lib-0.0.55",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "html",
-      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dev/html-0.15.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.19"
     },
     {
       "name": "http",
@@ -93,15 +75,9 @@
     },
     {
       "name": "universal_io",
-      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dev/universal_io-2.0.4",
+      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dev/universal_io-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "web_scraper",
-      "rootUri": "file:///home/hexaminate/.pub-cache/hosted/pub.dev/web_scraper-0.1.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.15"
     },
     {
       "name": "xendit",
@@ -110,7 +86,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-02-04T23:31:50.750420Z",
+  "generated": "2023-03-05T08:44:51.606480Z",
   "generator": "pub",
-  "generatorVersion": "2.19.0"
+  "generatorVersion": "2.19.2"
 }

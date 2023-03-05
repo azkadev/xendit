@@ -1,6 +1,6 @@
 name: xendit
 description: unofficial library for interact with api xendit payment support cross platform.
-version: 0.0.12
+version: 0.0.13
 homepage: https://github.com/azkadev/xendit/
 repository: https://github.com/azkadev/xendit/
 issue_tracker: https://github.com/azkadev/xendit/issues
@@ -10,8 +10,7 @@ environment:
 
 dev_dependencies:
   lints: ^2.0.0
-  web_scraper: ^0.1.4
 
 dependencies: 
-  galaxeus_lib: ^0.0.47
+  galaxeus_lib: ^0.0.55
   http: ^0.13.5
