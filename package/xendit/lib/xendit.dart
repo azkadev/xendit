@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, empty_catches, unnecessary_brace_in_string_interps
+// ignore_for_file: non_constant_identifier_names, empty_catches, unnecessary_brace_in_string_interps, unused_catch_stack
 
 library xendit;
 
@@ -31,9 +31,15 @@ class Xendit {
     parameters ??= {};
     headers ??= {};
     apiKey ??= api_key;
-    String methodRequest = (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false).stringMatch(endpoint) ?? "get").toLowerCase().replaceAll(RegExp(r"([ ]+)?", caseSensitive: false), "");
+    String methodRequest =
+        (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false)
+                    .stringMatch(endpoint) ??
+                "get")
+            .toLowerCase()
+            .replaceAll(RegExp(r"([ ]+)?", caseSensitive: false), "");
     String url = "https://api.xendit.co";
-    url = endpoint.replaceAll(RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
+    url = endpoint.replaceAll(
+        RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
     Map<String, String> headersOption = {
       "Authorization": "Basic ${base64.encode(utf8.encode("${apiKey}:"))}",
       "Content-Type": 'application/json',
@@ -45,9 +51,11 @@ class Xendit {
     if (methodRequest == "get") {
       result = await get(urlApi, headers: headersOption);
     } else if (methodRequest == "post") {
-      result = await post(urlApi, headers: headersOption, body: json.encode(parameters));
+      result = await post(urlApi,
+          headers: headersOption, body: json.encode(parameters));
     } else if (methodRequest == "patch") {
-      result = await patch(urlApi, headers: headersOption, body: json.encode(parameters));
+      result = await patch(urlApi,
+          headers: headersOption, body: json.encode(parameters));
     } else {
       result = await get(urlApi, headers: headersOption);
     }
@@ -77,7 +85,8 @@ class Xendit {
     required String account_type,
   }) async {
     Map res = await invoke(
-      endpoint: "GET https://api.xendit.co/balance?account_type=${account_type}",
+      endpoint:
+          "GET https://api.xendit.co/balance?account_type=${account_type}",
       headers: {
         "for-user-id": forUserId,
       },
@@ -158,6 +167,24 @@ class Xendit {
   }) async {
     Map res = await invoke(
       endpoint: "GET https://api.xendit.co/v2/invoices/${invoice_id}",
+      headers: {
+        "for-user-id": forUserId,
+      },
+    );
+
+    if (res["@type"] == "error") {
+      return await Future.error(XenditError(res));
+    }
+    return xendit_scheme.GetInvoice(res.cast<String, dynamic>());
+  }
+
+  Future<xendit_scheme.GetInvoice> getInvoiceByExternalId({
+    String forUserId = "",
+    required String external_id,
+  }) async {
+    Map res = await invoke(
+      endpoint:
+          "GET https://api.xendit.co/v2/invoices/?external_id=${external_id}",
       headers: {
         "for-user-id": forUserId,
       },
@@ -341,7 +368,8 @@ class Xendit {
   Future<xendit_scheme.TransferBalanceAccount> getTransferBalanceAccount({
     required String reference,
   }) async {
-    Map res = await invoke(endpoint: "GET https://api.xendit.co/transfers/reference=${reference}");
+    Map res = await invoke(
+        endpoint: "GET https://api.xendit.co/transfers/reference=${reference}");
 
     if (res["@type"] == "error") {
       return await Future.error(XenditError(res));

@@ -12,5 +12,5 @@ dev_dependencies:
   lints: ^2.0.0
 
 dependencies: 
-  galaxeus_lib: ^0.0.55
+  galaxeus_lib: ^0.0.61
   http: ^0.13.5
