@@ -1,107 +1,46 @@
-<h3 align="center">Global Corporation</h3>
+# Xendit Payment Gateway
 
-<h3 align="center">
-  Welcome to Global Corporation profile!
-  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="28">
-</h3>
+library tidak resmi untuk berinteraksi dengan xendit api payment gateway support di berbagai platform dan support server side
 
-<!-- Social icons section -->
-<p align="center">
-  <a href="https://www.instagram.com/global__corporation/"><img width="32px" alt="Instagram" title="Telegram" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"/></a>
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-  <a href="https://t.me/GLOBAL_CORPORATION_ORG"><img width="32px" alt="Twitter" title="Telegram" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"/></a>
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-  <a href="https://twitter.com/global_corp_org"><img width="32px" alt="Twitter" title="Twitter" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg"/></a>
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-  <a href="https://www.youtube.com/@global_Corporation"><img width="32px" alt="Youtube" title="Youtube" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png"/></a>
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-</p>
+## Install package
 
+```bash
+dart pub add xendit
+```
 
-**Global Corporation**
+### Quickstart
 
-adalah perusahaan terkemuka yang mengambil peran utama dalam mempercepat dan mempertahankan keamanan perusahaan. 
+```bash
+import 'dart:convert';
+import 'dart:io';
 
-Dengan fokus yang tajam pada inovasi dan keunggulan teknologi
+import 'package:xendit/xendit.dart';
+import "package:galaxeus_lib/galaxeus_lib.dart";
 
-**Global Corporation** menyediakan solusi proaktif yang efektif untuk mengamankan operasional perusahaan dan mencegah potensi risiko merugikan. 
+void main() async {
+  Xendit xendit = Xendit(apiKey: "xnd_development_iI9cluwTFSNoF9xUlJFxOYvMAD21WV6OHv1oMKKkSAEtdf2QQG0yVnS6BLMkn");
+  var res = await xendit.invoke(
+    endpoint: "POST https://api.xendit.co/v2/invoices",
+    headers: {
+      "for-user-id": "",
+    },
+    parameters: {
+      "external_id": "asoaskoaks",
+      "amount": 10000,
+    },
+    queryParameters: {
+      "id": "saksoak"
+    }
+  );
 
-Dengan tim ahli yang berkomitmen, teknologi canggih, dan pendekatan holistik terhadap keamanan perusahaan, Global Corporation telah menjadi acuan utama bagi perusahaan lain yang mengutamakan keamanan dan keselamatan sebagai prioritas utama dalam bisnis mereka.
+  print(res);
+}
+```
 
-
-## Social Media
-
-<h3 align="center">
-  Telegram
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20">
-</h3>
-
-1. [Group Developer Global Public](https://t.me/DEVELOPER_GLOBAL_PUBLIC)
-
-## Product / Services
-
-1. **Clone Bot / Userbot**
-  Hai kamu ingin punya bot / userbot dengan banyak features?. 
-  - **Features**:
-    - **Repeat Message**
-    - **Manage Chat Private / Channel / Group**
-  - **Platform Support**:
-    - **Telegram**
-    - **Whatsapp**
-    - **Twitter**
-    - **Github**
-    - **Google** 
-2. **Products**
-    - **Black Products**
-    - **Group / Channel**
-    - **Nsfw**
-    - **Payment Gateway**
-    - **Paid Promote**
-    - **Pre Release / Beta**
-    - **Promo Cheap**
-    - **Source Code Bot / USerbot**
-    - **Trade**
-3. **Services**
-    - **Developer**
-    - **Goal**
-    - **Partner**
-    - **Promote**
-    - **Recommendation**
-    - **Sortcut Cheat Sheet**
-    - **Terminate**
-    - **Upgrade**
-
-## Cara Beli Jasa / Products 
-
-- **Lewat Telegram**
-  Jika kamu ingin membeli bisa lewat telegram
-  -  Buka Bot: https://t.me/GLOBAL_CORP_ORG_BOT
-  -  Isi data pribadi / subscribe channel
-  -  Tap Main menu pilih services / products
-  -  Pilih Product / Services
-  -  Pastikan coin mencukupi
-  -  Isi data yang di butuhkan
-  
-Video Tutorial
-[![Watch the video](https://img.youtube.com/vi/TY0Y21C6asM/maxresdefault.jpg)](https://www.youtube.com/watch?v=TY0Y21C6asM)
-
-- **Lewat App**
-  jika kamu ingin melihat prroduct / jasa dengan full demo kamu bisa beli lewat app
- 
+> Method shorthand saat ini belum tersedia full jika kalian ingin pakai method api terbaru kalian bisa pakai request ya
 
 
-## 📺 Latest YouTube Videos
-
-  <!-- prettier-ignore-start -->
-  <!-- BEGIN YOUTUBE-CARDS -->
-[![Cara beli ai telegram versi bot dan cara pakai| Global Corporation](https://ytcards.demolab.com/?id=7LZhoklvS9A&title=Cara+beli+ai+telegram+versi+bot+dan+cara+pakai%7C+Global+Corporation&lang=id&timestamp=1710937415&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=250&border_radius=5 "Cara beli ai telegram versi bot dan cara pakai| Global Corporation")](https://www.youtube.com/watch?v=7LZhoklvS9A)
-[![Ai Userbot Telegram Demo Cara Pakai Dan Beli | Global Corporation](https://ytcards.demolab.com/?id=4mAZ6EgAhUo&title=Ai+Userbot+Telegram+Demo+Cara+Pakai+Dan+Beli+%7C+Global+Corporation&lang=id&timestamp=1710936251&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=250&border_radius=5 "Ai Userbot Telegram Demo Cara Pakai Dan Beli | Global Corporation")](https://www.youtube.com/watch?v=4mAZ6EgAhUo)
-[![CARA BELI USERBOT TELEGRAM CLOUD  | Global Corporation](https://ytcards.demolab.com/?id=uiDJwK9r3Cg&title=CARA+BELI+USERBOT+TELEGRAM+CLOUD++%7C+Global+Corporation&lang=id&timestamp=1710900440&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=250&border_radius=5 "CARA BELI USERBOT TELEGRAM CLOUD  | Global Corporation")](https://www.youtube.com/watch?v=uiDJwK9r3Cg)
-[![Cara Top Up Automatis Menggunakan Payment Gateway Di GLOBAL BOT APP](https://ytcards.demolab.com/?id=ADqzS5ORJsU&title=Cara+Top+Up+Automatis+Menggunakan+Payment+Gateway+Di+GLOBAL+BOT+APP&lang=id&timestamp=1710721879&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=250&border_radius=5 "Cara Top Up Automatis Menggunakan Payment Gateway Di GLOBAL BOT APP")](https://www.youtube.com/watch?v=ADqzS5ORJsU)
-[![Cara Membeli Jasa Developer / Paid Promote / ADS / dll Di Telegram Bot | Global Corporation](https://ytcards.demolab.com/?id=TY0Y21C6asM&title=Cara+Membeli+Jasa+Developer+%2F+Paid+Promote+%2F+ADS+%2F+dll+Di+Telegram+Bot+%7C+Global+Corporation&lang=id&timestamp=1710717990&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=250&border_radius=5 "Cara Membeli Jasa Developer / Paid Promote / ADS / dll Di Telegram Bot | Global Corporation")](https://www.youtube.com/watch?v=TY0Y21C6asM)
-[![Global Userbot Telegram](https://ytcards.demolab.com/?id=Kyj1Zl04_68&title=Global+Userbot+Telegram&lang=id&timestamp=1710690464&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=250&border_radius=5 "Global Userbot Telegram")](https://www.youtube.com/watch?v=Kyj1Zl04_68)
-<!-- END YOUTUBE-CARDS -->
-  <!-- prettier-ignore-end -->
+- [Docs Official](https://developers.xendit.co/api-reference/)
 <!-- START GLOBAL CORPORATION -->
 <h3 align="center">
   Global Corporation
@@ -262,19 +201,36 @@ With a committed team of experts, advanced technology, and a holistic approach t
     - **Terminate**
     - **Upgrade**
 
-## Cara Beli Jasa / Products 
+## How To Buy Services Or Products | Cara Beli Jasa Atau Products
 
-- **Lewat Telegram Bot**
-  Jika kamu ingin membeli bisa lewat telegram automatis pembayaran hingga proses
-  (jika proses lama itu bukan **SCAM !!** kemungkinan **server down** jadi proses bisa lebih lama jika ragu tap menu report lalu isi keluhan)
-  -  Buka Bot: https://t.me/GLOBAL_CORP_ORG_BOT
-  -  Isi data pribadi / subscribe channel
-  -  Tap Main menu pilih services / products
-  -  Pilih Product / Services
-  -  Pastikan coin mencukupi
-  -  Isi data yang di butuhkan
+- **Via Telegram Bot**
 
-- **Lewat Telegram USER**
+  - **Englisth**
+     
+     If you want to buy, you can use Telegram to automatically process the payment
+     (if the long process is not a **SCAM!!** it's possible that the **server is down** so the process could take longer. If in doubt, tap the report menu then fill in a complaint)
+
+     - Open Bot: https://t.me/GLOBAL_CORP_ORG_BOT
+     - Fill in personal data / subscribe to the channel
+     - Tap Main menu select services / products
+     - Select Products / Services
+     - Make sure there are enough coins
+     - Fill in the required data
+
+
+  - **Indonesia**
+
+     Jika kamu ingin membeli bisa lewat telegram automatis pembayaran hingga proses
+     (jika proses lama itu bukan **SCAM !!** kemungkinan **server down** jadi proses bisa lebih lama jika ragu tap menu report lalu isi keluhan)
+     -  Buka Bot: https://t.me/GLOBAL_CORP_ORG_BOT
+     -  Isi data pribadi / subscribe channel
+     -  Tap Main menu pilih services / products
+     -  Pilih Product / Services
+     -  Pastikan coin mencukupi
+     -  Isi data yang di butuhkan
+
+- **Via Telegram USER**
+  
   -  Buka: https://t.me/general_user
   -  Ucapin apapun yang kamu butuh jasa dev / apapun
 
@@ -283,7 +239,14 @@ Video Tutorial
 [![Watch the video](https://img.youtube.com/vi/TY0Y21C6asM/maxresdefault.jpg)](https://www.youtube.com/watch?v=TY0Y21C6asM)
 
 - **Lewat App**
-  jika kamu ingin melihat product / jasa dengan full demo kamu bisa beli lewat app
+
+  - **English** 
+
+    If you want to see a product/service with a full demo, you can buy it via the app
+
+  - **Indonesia**
+
+    jika kamu ingin melihat product / jasa dengan full demo kamu bisa beli lewat app
 
 ## 📺 Latest YouTube Videos
 
