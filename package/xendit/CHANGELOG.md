@@ -1,4 +1,4 @@
-## 0.0.23
+## 0.0.24
 
 - add support custom client so now support edge dart.
 
