@@ -1,33 +1,7 @@
-## 0.0.14
+## 0.0.23
 
-- update dart 3.
+- add support custom client so now support edge dart.
 
-## 0.0.9
+## 0.0.20
 
-- update style code.
-
-## 0.0.0
-
-- Initial version.
-
-## 0.0.1
-
-- ADD More method.
-
-## 0.0.2
-- add parameters headers
-
-## 0.0.3
-- add query parameters
-
-## 0.0.4
-- change style code and change readme
-
-## 0.0.5
-- update
-
-## 0.0.6
-- update docs
-
-## 0.0.7
-- add shorthand
+- new style new library.
