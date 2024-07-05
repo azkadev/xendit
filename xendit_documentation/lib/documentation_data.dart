@@ -1,11 +1,10 @@
 import 'package:documentation/scheme/scheme.dart';
 
-DocumentationData documentationData = DocumentationData.create(
-  title: "Package Full Template Documentation",
+DocumentationData get documentationData => DocumentationData.create(
+  title: "Xendit Documentation",
   logo: "assets/logo/logo.png",
   description: """
-Package Full Template adalah library yang memanfaatkan api telegram untuk di implementasikan ke berbagai platform, library ini user friendly
-sehingga mudah di gunakan untuk membuat project seperti applikasi, bot, userbot, web dalam skala bisnis besar
+Xendit payment gateway asian yang support berbagai metode pembayaran
 """,
   content: """
 <h2 align="center">Ultra Fast, Enjoyable & Cross Platform Package Full Template</h2>

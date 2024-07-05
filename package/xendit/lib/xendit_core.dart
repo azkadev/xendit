@@ -34,39 +34,30 @@ class Xendit {
     String? apiKey,
     Client? httpClient,
   }) async {
-    httpClient ??= http_client;
     parameters ??= {};
     headers ??= {};
     apiKey ??= api_key;
-    String methodRequest =
-        (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false)
-                    .stringMatch(endpoint) ??
-                "get")
-            .toLowerCase()
-            .replaceAll(RegExp(r"([ ]+)?", caseSensitive: false), "");
+    String methodRequest = (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false).stringMatch(endpoint) ?? "get").toLowerCase().replaceAll(RegExp(r"([ ]+)?", caseSensitive: false), "");
     String url = "https://api.xendit.co";
-    url = endpoint.replaceAll(
-        RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
+    url = endpoint.replaceAll(RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
     Map<String, String> headersOption = {
       "Authorization": "Basic ${base64.encode(utf8.encode("${apiKey}:"))}",
       "Content-Type": 'application/json',
       ...headers,
     };
-
-    late Response result;
     Uri urlApi = Uri.parse(url).replace(queryParameters: queryParameters);
 
-    if (methodRequest == "get") {
-      result = await httpClient.get(urlApi, headers: headersOption);
-    } else if (methodRequest == "post") {
-      result = await httpClient.post(urlApi,
-          headers: headersOption, body: json.encode(parameters));
-    } else if (methodRequest == "patch") {
-      result = await httpClient.patch(urlApi,
-          headers: headersOption, body: json.encode(parameters));
-    } else {
-      result = await httpClient.get(urlApi, headers: headersOption);
-    }
+    Response result = await Future(() async {
+      if (methodRequest == "get") {
+        return await (httpClient ??= http_client).get(urlApi, headers: headersOption);
+      } else if (methodRequest == "post") {
+        return await (httpClient ??= http_client).post(urlApi, headers: headersOption, body: json.encode(parameters));
+      } else if (methodRequest == "patch") {
+        return await (httpClient ??= http_client).patch(urlApi, headers: headersOption, body: json.encode(parameters));
+      } else {
+        return await (httpClient ??= http_client).get(urlApi, headers: headersOption);
+      }
+    });
     Map body = {
       "@type": "ok",
     };
@@ -94,8 +85,7 @@ class Xendit {
     required String account_type,
   }) async {
     Map res = await invoke(
-      endpoint:
-          "GET https://api.xendit.co/balance?account_type=${account_type}",
+      endpoint: "GET https://api.xendit.co/balance?account_type=${account_type}",
       headers: {
         "for-user-id": forUserId,
       },
@@ -194,8 +184,7 @@ class Xendit {
     required String external_id,
   }) async {
     Map res = await invoke(
-      endpoint:
-          "GET https://api.xendit.co/v2/invoices/?external_id=${external_id}",
+      endpoint: "GET https://api.xendit.co/v2/invoices/?external_id=${external_id}",
       headers: {
         "for-user-id": forUserId,
       },
