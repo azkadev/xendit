@@ -11,7 +11,7 @@ dev_dependencies:
   lints: '^2.1.0'
   test: '^1.24.6'
 dependencies: 
-  general_lib: '^0.0.42'
+  general_lib: '^0.0.43'
   http: '^1.1.2'
 dependency_overrides: 
   pointycastle: '3.8.0'

@@ -1,3 +1,5 @@
+A sample command-line application with an entrypoint in `bin/`, library code
+in `lib/`, and example unit test in `test/`.
 # Xendit Payment Gateway
 
 library tidak resmi untuk berinteraksi dengan xendit api payment gateway support di berbagai platform dan support server side

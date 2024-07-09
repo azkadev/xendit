@@ -1,12 +1,12 @@
 import 'package:documentation/scheme/scheme.dart';
 
 DocumentationData get documentationData => DocumentationData.create(
-  title: "Xendit Documentation",
-  logo: "assets/logo/logo.png",
-  description: """
+      title: "Xendit Documentation",
+      logo: "assets/logo/logo.png",
+      description: """
 Xendit payment gateway asian yang support berbagai metode pembayaran
 """,
-  content: """
+      content: """
 <h2 align="center">Ultra Fast, Enjoyable & Cross Platform Package Full Template</h2>
 
 **Package Full Template** Dart **library** for make telegram base flutter **bot**, **userbot**, **App** Support Run Server Side And Client Side, This library 100% easy for make multiples **client or accounts** because this library you just call function not execute shell command so update account will show at function event emitter
@@ -19,62 +19,78 @@ Xendit payment gateway asian yang support berbagai metode pembayaran
 
 
 """
-      .trim(),
-  author_url_social_medias: {
-    "https://youtube.com/@azkadev",
-    "https://github.com/azkadev",
-    "https://t.me/azkadev",
-    "https://azkadev.netlify.app",
-    
-  }.toList(),
-  footer: DocumentationFooterData.create(
-    footers: [
-      FootersData.create(
-        title: "Other Information",
-        footer: [
-          FooterData.create(
-            title: "About",
+          .trim(),
+      author_url_social_medias: {
+        "https://youtube.com/@azkadev",
+        "https://github.com/azkadev",
+        "https://t.me/azkadev",
+        "https://azkadev.netlify.app",
+      }.toList(),
+      footer: DocumentationFooterData.create(
+        footers: [
+          FootersData.create(
+            title: "Other Information",
+            footer: [
+              FooterData.create(
+                title: "About",
+              ),
+              FooterData.create(
+                  title: "Buy My Services On Telegram 🥺",
+                  url: "https://t.me/azkadevbot?start=ref_web_documentation"),
+              FooterData.create(
+                  title: "Donate Me 🥺",
+                  url: "https://github.com/sponsor/azkadev"),
+              FooterData.create(
+                  title: "Donate Me On Telegram 🥺",
+                  url:
+                      "https://t.me/azkadevbot?start=donate_web_documentation"),
+            ],
           ),
-          FooterData.create(title: "Buy My Services On Telegram 🥺", url: "https://t.me/azkadevbot?start=ref_web_documentation"),
-          FooterData.create(title: "Donate Me 🥺", url: "https://github.com/sponsor/azkadev"),
-          FooterData.create(title: "Donate Me On Telegram 🥺", url: "https://t.me/azkadevbot?start=donate_web_documentation"),
+          FootersData.create(
+            title: "Other Library",
+            footer: [
+              FooterData.create(
+                  title: "Discord Client",
+                  url: "https://t.me/azkadevbot?start=ref_web_documentation"),
+              FooterData.create(
+                  title: "DoodStream Client",
+                  url: "https://t.me/azkadevbot?start=ref_web_documentation"),
+              FooterData.create(
+                  title: "Github Client",
+                  url: "https://t.me/azkadevbot?start=ref_web_documentation"),
+              FooterData.create(
+                  title: "Google Client",
+                  url: "https://t.me/azkadevbot?start=ref_web_documentation"),
+              FooterData.create(
+                  title: "Whatsapp Client",
+                  url: "https://t.me/azkadevbot?start=ref_web_documentation"),
+            ],
+          ),
         ],
       ),
-      FootersData.create(
-        title: "Other Library",
-        footer: [
-          FooterData.create(title: "Discord Client", url: "https://t.me/azkadevbot?start=ref_web_documentation"),
-          FooterData.create(title: "DoodStream Client", url: "https://t.me/azkadevbot?start=ref_web_documentation"),
-          FooterData.create(title: "Github Client", url: "https://t.me/azkadevbot?start=ref_web_documentation"),
-          FooterData.create(title: "Google Client", url: "https://t.me/azkadevbot?start=ref_web_documentation"),
-          FooterData.create(title: "Whatsapp Client", url: "https://t.me/azkadevbot?start=ref_web_documentation"),
-        ],
-      ),
-    ],
-  ),
-  docs: [
-    DocsData.create(
-      doc_id: "mtproto",
-      title: "Mtproto",
-      description: """
+      docs: [
+        DocsData.create(
+          doc_id: "mtproto",
+          title: "Mtproto",
+          description: """
 Mtproto adalah library yang paling ringan cepat tidak memerlukan ffi namun jika menggunakan ini harap jangan flood / mencoba call api
 berkali kali karena api ini direct ke telegram langsung sehingga akan sangat mudah di banned jika menggunakan ini (api ini di gunakan jika anda sudah mahir coding + perhitungan limitasi api)
 """
-          .trim(),
-      sidebars: [
-        DocSideBar.create(
-          title: "Intro",
-          navigate_content_id: "intro",
-        ),
-        DocSideBar.create(
-          title: "Demo",
-          navigate_content_id: "intro",
-        ),
-      ],
-      contents: [
-        DocContents.create(
-          content_id: "intro",
-          content: """
+              .trim(),
+          sidebars: [
+            DocSideBar.create(
+              title: "Intro",
+              navigate_content_id: "intro",
+            ),
+            DocSideBar.create(
+              title: "Demo",
+              navigate_content_id: "intro",
+            ),
+          ],
+          contents: [
+            DocContents.create(
+              content_id: "intro",
+              content: """
 
 <h2 align="center">Ultra Fast, Enjoyable & Cross Platform Package Full Template</h2>
 
@@ -140,33 +156,33 @@ void main(List<String> args) {
 **I really need funds so that this library can be easier to use. You can buy this library by subscribing/sponsoring me on GitHub:** [azkadev](https://github.com/azkadev)
 
 """
-              .trim(),
-        )
-      ],
-    ),
-    DocsData.create(
-      doc_id: "tdlib",
-      title: "Telegram Database Library (TDLIB)",
-      description: """
+                  .trim(),
+            )
+          ],
+        ),
+        DocsData.create(
+          doc_id: "tdlib",
+          title: "Telegram Database Library (TDLIB)",
+          description: """
 Tdlib adalah library cross platform cpp, kami menggunakan ffi agar bisa mengakses tdlib, tdlib sangat di rekomendasikan karena
 sangat mudah di gunakan, namun jika untuk skala bisnis lebih besar tidak cocok karena tdlib boros memory, cpu, walaupun nanti
 kode anda sudah efficient akan terjadi lag / bottleneck
 """
-          .trim(),
-      sidebars: [
-        DocSideBar.create(
-          title: "Intro",
-          navigate_content_id: "intro",
-        ),
-        DocSideBar.create(
-          title: "Demo",
-          navigate_content_id: "intro",
-        ),
-      ],
-      contents: [
-        DocContents.create(
-          content_id: "intro",
-          content: """
+              .trim(),
+          sidebars: [
+            DocSideBar.create(
+              title: "Intro",
+              navigate_content_id: "intro",
+            ),
+            DocSideBar.create(
+              title: "Demo",
+              navigate_content_id: "intro",
+            ),
+          ],
+          contents: [
+            DocContents.create(
+              content_id: "intro",
+              content: """
 
 <h2 align="center">Ultra Fast, Enjoyable & Cross Platform Package Full Template</h2>
 
@@ -232,32 +248,32 @@ void main(List<String> args) {
 **I really need funds so that this library can be easier to use. You can buy this library by subscribing/sponsoring me on GitHub:** [azkadev](https://github.com/azkadev)
 
 """
-              .trim(),
-        )
-      ],
-    ),
-    DocsData.create(
-      doc_id: "telegram_bot_api",
-      title: "Telegram Bot Api",
-      description: """
+                  .trim(),
+            )
+          ],
+        ),
+        DocsData.create(
+          doc_id: "telegram_bot_api",
+          title: "Telegram Bot Api",
+          description: """
 Telegram Bot Api adalah library + api official dari telegram yang menggunakan tdlib sebagai dasar, api
 ini sangat mudah di gunakan jika anda punya public ip sangat di rekomendasikan menggunakan ini karena tidak boros memory, cpu
 """
-          .trim(),
-      sidebars: [
-        DocSideBar.create(
-          title: "Intro",
-          navigate_content_id: "intro",
-        ),
-        DocSideBar.create(
-          title: "Demo",
-          navigate_content_id: "intro",
-        ),
-      ],
-      contents: [
-        DocContents.create(
-          content_id: "intro",
-          content: """
+              .trim(),
+          sidebars: [
+            DocSideBar.create(
+              title: "Intro",
+              navigate_content_id: "intro",
+            ),
+            DocSideBar.create(
+              title: "Demo",
+              navigate_content_id: "intro",
+            ),
+          ],
+          contents: [
+            DocContents.create(
+              content_id: "intro",
+              content: """
 
 <h2 align="center">Ultra Fast, Enjoyable & Cross Platform Package Full Template</h2>
 
@@ -323,34 +339,34 @@ void main(List<String> args) {
 **I really need funds so that this library can be easier to use. You can buy this library by subscribing/sponsoring me on GitHub:** [azkadev](https://github.com/azkadev)
 
 """
-              .trim(),
-        )
-      ],
-    ),
-    DocsData.create(
-      doc_id: "telegram_client",
-      title: "Package Full Template",
-      description: """
+                  .trim(),
+            )
+          ],
+        ),
+        DocsData.create(
+          doc_id: "telegram_client",
+          title: "Package Full Template",
+          description: """
 Package Full Template merupakan library resmi yang saya buat, metode ini saya gunakan di semua project saya,
 metode ini sangat flexible dan customizable sehingga anda bisa mengintegrasikan (tdlib / mtproto / telegram bot api),
 metode ini tidak hanya untuk membuat bot melainkan userbot, saya menggunakan style code telegram bot api hal ini 
 di karenakan agar mudah di gunakan
 """
-          .trim(),
-      sidebars: [
-        DocSideBar.create(
-          title: "Intro",
-          navigate_content_id: "intro",
-        ),
-        DocSideBar.create(
-          title: "Demo",
-          navigate_content_id: "intro",
-        ),
-      ],
-      contents: [
-        DocContents.create(
-          content_id: "intro",
-          content: """
+              .trim(),
+          sidebars: [
+            DocSideBar.create(
+              title: "Intro",
+              navigate_content_id: "intro",
+            ),
+            DocSideBar.create(
+              title: "Demo",
+              navigate_content_id: "intro",
+            ),
+          ],
+          contents: [
+            DocContents.create(
+              content_id: "intro",
+              content: """
 
 <h2 align="center">Ultra Fast, Enjoyable & Cross Platform Package Full Template</h2>
 
@@ -415,9 +431,9 @@ void main(List<String> args) {
 
 **I really need funds so that this library can be easier to use. You can buy this library by subscribing/sponsoring me on GitHub:** [azkadev](https://github.com/azkadev)
 """
-              .trim(),
+                  .trim(),
+            ),
+          ],
         ),
       ],
-    ),
-  ],
-);
+    );
