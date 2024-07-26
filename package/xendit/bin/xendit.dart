@@ -2,7 +2,7 @@ import 'package:xendit/xendit.dart';
 
 void main() async {
   Xendit xendit = Xendit(
-      apiKey:
+      api_key:
           "xnd_development_rVgN5g1FbAj3zBeGPrFTZ81mJsNINY2lvLWNWeKHTJlBKtysWGnVYx0ltyv43s");
   var res = await xendit
       .invoke(endpoint: "POST https://api.xendit.co/v2/invoices", headers: {

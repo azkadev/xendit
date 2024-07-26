@@ -8,12 +8,12 @@ import "scheme/scheme.dart" as xendit_scheme;
 
 /// xendit helo world heo gais
 class Xendit {
-  late String api_key;
-  late Client http_client;
+  String api_key;
+  late final Client http_client;
 
   /// xendit helo world heo gais
   Xendit({
-    required String apiKey,
+    required this.api_key,
     Client? httpClient,
   }) {
     if (httpClient == null) {
@@ -21,7 +21,6 @@ class Xendit {
     } else {
       http_client = httpClient;
     }
-    api_key = apiKey;
   }
 
   /// request method support all update
@@ -37,46 +36,36 @@ class Xendit {
     parameters ??= {};
     headers ??= {};
     apiKey ??= api_key;
-    String methodRequest =
-        (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false)
-                    .stringMatch(endpoint) ??
-                "get")
-            .toLowerCase()
-            .replaceAll(RegExp(r"([ ]+)?", caseSensitive: false), "");
+    final String methodRequest = (RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false).stringMatch(endpoint) ?? "get").toLowerCase().replaceAll(RegExp(r"([ ]+)?", caseSensitive: false), "");
     String url = "https://api.xendit.co";
-    url = endpoint.replaceAll(
-        RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
-    Map<String, String> headersOption = {
+    url = endpoint.replaceAll(RegExp(r"^(get|post|patch)([ ]+)?", caseSensitive: false), "");
+   final  Map<String, String> headersOption = {
       "Authorization": "Basic ${base64.encode(utf8.encode("${apiKey}:"))}",
       "Content-Type": 'application/json',
       ...headers,
     };
-    Uri urlApi = Uri.parse(url).replace(queryParameters: queryParameters);
+    final Uri urlApi = Uri.parse(url).replace(queryParameters: queryParameters);
 
-    Response result = await Future(() async {
+    final Response result = await Future(() async {
       if (methodRequest == "get") {
-        return await (httpClient ??= http_client)
-            .get(urlApi, headers: headersOption);
+        return await (httpClient ??= http_client).get(urlApi, headers: headersOption);
       } else if (methodRequest == "post") {
-        return await (httpClient ??= http_client).post(urlApi,
-            headers: headersOption, body: json.encode(parameters));
+        return await (httpClient ??= http_client).post(urlApi, headers: headersOption, body: json.encode(parameters));
       } else if (methodRequest == "patch") {
-        return await (httpClient ??= http_client).patch(urlApi,
-            headers: headersOption, body: json.encode(parameters));
+        return await (httpClient ??= http_client).patch(urlApi, headers: headersOption, body: json.encode(parameters));
       } else {
-        return await (httpClient ??= http_client)
-            .get(urlApi, headers: headersOption);
+        return await (httpClient ??= http_client).get(urlApi, headers: headersOption);
       }
     });
-    Map body = {
+    final Map body = {
       "@type": "ok",
     };
     if (result.statusCode != 200) {
       body["@type"] = "error";
     }
-    String raw_data = result.body;
+    final String raw_data = result.body;
     try {
-      var data = (json.decode(raw_data));
+      final dynamic data = (json.decode(raw_data));
       if (data is List) {
         body["datas"] = data;
       } else {
@@ -94,9 +83,8 @@ class Xendit {
     String forUserId = "",
     required String account_type,
   }) async {
-    Map res = await invoke(
-      endpoint:
-          "GET https://api.xendit.co/balance?account_type=${account_type}",
+    final Map res = await invoke(
+      endpoint: "GET https://api.xendit.co/balance?account_type=${account_type}",
       headers: {
         "for-user-id": forUserId,
       },
@@ -134,7 +122,7 @@ class Xendit {
     bool? should_authenticate_credit_card,
     Map<String, String>? headers,
   }) async {
-    Map jsonData = {
+   final Map jsonData = {
       "external_id": external_id,
       "amount": amount,
       "description": description,
@@ -157,7 +145,7 @@ class Xendit {
       "should_authenticate_credit_card": should_authenticate_credit_card,
     };
     jsonData.removeValueNulls();
-    Map res = await invoke(
+   final  Map res = await invoke(
       endpoint: "POST https://api.xendit.co/v2/invoices",
       headers: {
         "for-user-id": forUserId,
@@ -177,7 +165,7 @@ class Xendit {
     String forUserId = "",
     required String invoice_id,
   }) async {
-    Map res = await invoke(
+  final  Map res = await invoke(
       endpoint: "GET https://api.xendit.co/v2/invoices/${invoice_id}",
       headers: {
         "for-user-id": forUserId,
@@ -194,9 +182,8 @@ class Xendit {
     String forUserId = "",
     required String external_id,
   }) async {
-    Map res = await invoke(
-      endpoint:
-          "GET https://api.xendit.co/v2/invoices/?external_id=${external_id}",
+   final Map res = await invoke(
+      endpoint: "GET https://api.xendit.co/v2/invoices/?external_id=${external_id}",
       headers: {
         "for-user-id": forUserId,
       },
@@ -212,7 +199,7 @@ class Xendit {
     String forUserId = "",
     required String invoice_id,
   }) async {
-    Map res = await invoke(
+   final  Map res = await invoke(
       endpoint: "POST https://api.xendit.co/invoices/${invoice_id}/expire!",
       headers: {
         "for-user-id": forUserId,
@@ -228,7 +215,7 @@ class Xendit {
   Future<xendit_scheme.ListAllInvoice> ListAllInvoice({
     String forUserId = "",
   }) async {
-    Map res = await invoke(
+    final Map res = await invoke(
       endpoint: "GET https://api.xendit.co/v2/invoices",
       headers: {
         "for-user-id": forUserId,
@@ -247,7 +234,7 @@ class Xendit {
     required int amount,
     required String email,
   }) async {
-    Map res = await invoke(
+    final Map res = await invoke(
       endpoint: "POST https://api.xendit.co/payouts",
       headers: {
         "for-user-id": forUserId,
@@ -269,7 +256,7 @@ class Xendit {
     String forUserId = "",
     required String id,
   }) async {
-    Map res = await invoke(
+    final Map res = await invoke(
       endpoint: "GET https://api.xendit.co/payouts/${id}",
       headers: {
         "for-user-id": forUserId,
@@ -286,7 +273,7 @@ class Xendit {
     String forUserId = "",
     required String id,
   }) async {
-    Map res = await invoke(
+    final Map res = await invoke(
       endpoint: "POST https://api.xendit.co/payouts/${id}/void",
       headers: {
         "for-user-id": forUserId,
@@ -305,7 +292,7 @@ class Xendit {
     required String bussiness_name,
     Map<String, String>? headers,
   }) async {
-    Map res = await invoke(
+    final Map res = await invoke(
       endpoint: "POST https://api.xendit.co/v2/accounts",
       parameters: {
         "email": email,
@@ -327,7 +314,7 @@ class Xendit {
     required String id,
     Map<String, String>? headers,
   }) async {
-    Map res = await invoke(
+    final Map res = await invoke(
       endpoint: "GET https://api.xendit.co/v2/accounts/${id}",
       headers: headers,
     );
@@ -344,7 +331,7 @@ class Xendit {
     required String bussiness_name,
     Map<String, String>? headers,
   }) async {
-    Map res = await invoke(
+   final Map res = await invoke(
       endpoint: "PATCH https://api.xendit.co/v2/accounts/{id}",
       parameters: {
         "email": email,
@@ -368,7 +355,7 @@ class Xendit {
     required String destination_user_id,
     Map<String, String>? headers,
   }) async {
-    Map res = await invoke(
+   final Map res = await invoke(
         endpoint: "POST https://api.xendit.co/transfers",
         parameters: {
           "reference": reference,
@@ -388,7 +375,7 @@ class Xendit {
     required String reference,
     Map<String, String>? headers,
   }) async {
-    Map res = await invoke(
+   final  Map res = await invoke(
       endpoint: "GET https://api.xendit.co/transfers/reference=${reference}",
       headers: headers,
     );
@@ -405,13 +392,13 @@ class Xendit {
     required List<Map> routes,
     Map<String, String>? headers,
   }) async {
-    Map jsonData = {
+    final Map jsonData = {
       "name": name,
       "description": description,
       "routes": routes,
     };
     jsonData.removeValueNulls();
-    Map res = await invoke(
+    final Map res = await invoke(
       endpoint: "POST https://api.xendit.co/fee_rules",
       parameters: jsonData,
       headers: headers,
@@ -452,8 +439,8 @@ extension MapDeleteValueNull on Map {
 }
 
 class XenditError {
-  late Map data;
-  XenditError(this.data);
+  final Map data;
+  const XenditError(this.data);
 
   Map toMap() {
     return data;
