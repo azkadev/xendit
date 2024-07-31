@@ -1,6 +1,6 @@
 name: 'xendit'
 description: 'unofficial library for interact with api xendit payment support cross platform.'
-version: '0.0.24'
+version: '0.0.25'
 homepage: 'https://github.com/azkadev/xendit/'
 repository: 'https://github.com/azkadev/xendit/'
 issue_tracker: 'https://github.com/azkadev/xendit/issues'
@@ -11,7 +11,7 @@ dev_dependencies:
   lints: '^2.1.0'
   test: '^1.24.6'
 dependencies: 
-  general_lib: '^0.0.43'
+  general_lib: '^0.0.44'
   http: '^1.1.2'
 dependency_overrides: 
   pointycastle: '3.8.0'

@@ -93,7 +93,7 @@
     },
     {
       "name": "general_lib",
-      "rootUri": "file:///home/galaxeus/.pub-cache/hosted/pub.dev/general_lib-0.0.43",
+      "rootUri": "file:///home/galaxeus/.pub-cache/hosted/pub.dev/general_lib-0.0.44",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -356,7 +356,10 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-07-09T03:27:15.915557Z",
+  "generated": "2024-07-31T21:39:05.658328Z",
   "generator": "pub",
-  "generatorVersion": "3.3.4"
+  "generatorVersion": "3.4.4",
+  "flutterRoot": "file:///home/galaxeus/development/flutter",
+  "flutterVersion": "3.22.3",
+  "pubCache": "file:///home/galaxeus/.pub-cache"
 }
