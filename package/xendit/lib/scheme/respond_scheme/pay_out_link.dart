@@ -1,59 +1,47 @@
-/* <!-- START LICENSE -->
+// ignore_for_file: non_constant_identifier_names, unused_import
+import "package:general_lib/general_lib.dart";
+// import "dart:convert";
 
+class PayOutLink extends JsonScheme {
+  PayOutLink(super.rawData);
 
-This Software / Program / Source Code Created By Developer From Company GLOBAL CORPORATION
-Social Media:
-
-   - Youtube: https://youtube.com/@Global_Corporation 
-   - Github: https://github.com/globalcorporation
-   - TELEGRAM: https://t.me/GLOBAL_CORP_ORG_BOT
-
-All code script in here created 100% original without copy / steal from other code if we copy we add description source at from top code
-
-If you wan't edit you must add credit me (don't change)
-
-If this Software / Program / Source Code has you
-
-Jika Program ini milik anda dari hasil beli jasa developer di (Global Corporation / apapun itu dari turunan itu jika ada kesalahan / bug / ingin update segera lapor ke sub)
-
-Misal anda beli Beli source code di Slebew CORPORATION anda lapor dahulu di slebew jangan lapor di GLOBAL CORPORATION!
-
-Jika ada kendala program ini (Pastikan sebelum deal project tidak ada negosiasi harga)
-Karena jika ada negosiasi harga kemungkinan
-
-1. Software Ada yang di kurangin
-2. Informasi tidak lengkap
-3. Bantuan Tidak Bisa remote / full time (Ada jeda)
-
-Sebelum program ini sampai ke pembeli developer kami sudah melakukan testing
-
-jadi sebelum nego kami sudah melakukan berbagai konsekuensi jika nego tidak sesuai ? 
-Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba tiba di potong akhirnya bantuan / software kadang tidak lengkap
-
-
-<!-- END LICENSE --> */
-// ignore_for_file: non_constant_identifier_names
-import 'dart:convert';
-
-class GetPayOutLink {
-  Map rawData;
-
-  GetPayOutLink(this.rawData);
-
+  /// return default data
+  ///
   static Map get defaultData {
     return {
-      "@type": "ok",
-      "id": "acb0a7a4-82fb-47de-8d91-f302c5350cc6",
-      "external_id": "saosaks",
-      "amount": 50000,
-      "merchant_name": "HEXAMINATE",
-      "status": "PENDING",
+      "@type": "payOutLink",
+      "id": "",
+      "external_id": "",
+      "amount": 0,
+      "merchant_name": "",
+      "status": "",
       "expiration_timestamp": "2023-02-07T18:22:14.632Z",
       "created": "2023-02-04T18:22:13.249Z",
       "email": "",
       "payout_url":
           "https://payout-staging.xendit.co/web/acb0a7a4-82fb-47de-8d91-f302c5350cc6"
     };
+  }
+
+  /// check data
+  /// if raw data
+  /// - rawData["@type"] == payOutLink
+  /// if same return true
+  bool json_scheme_utils_checkDataIsSameBySpecialType() {
+    return rawData["@type"] == defaultData["@type"];
+  }
+
+  /// check value data whatever do yout want
+  bool json_scheme_utils_checkDataIsSameBuilder({
+    required bool Function(Map rawData, Map defaultData) onResult,
+  }) {
+    return onResult(rawData["@type"], defaultData["@type"]);
+  }
+
+  /// create [PayOutLink]
+  /// Empty
+  static PayOutLink empty() {
+    return PayOutLink({});
   }
 
   String? get special_type {
@@ -67,6 +55,10 @@ class GetPayOutLink {
     }
   }
 
+  set special_type(String? value) {
+    rawData["@type"] = value;
+  }
+
   String? get id {
     try {
       if (rawData["id"] is String == false) {
@@ -76,6 +68,10 @@ class GetPayOutLink {
     } catch (e) {
       return null;
     }
+  }
+
+  set id(String? value) {
+    rawData["id"] = value;
   }
 
   String? get external_id {
@@ -89,15 +85,23 @@ class GetPayOutLink {
     }
   }
 
-  int? get amount {
+  set external_id(String? value) {
+    rawData["external_id"] = value;
+  }
+
+  num? get amount {
     try {
-      if (rawData["amount"] is int == false) {
+      if (rawData["amount"] is num == false) {
         return null;
       }
-      return rawData["amount"] as int;
+      return rawData["amount"] as num;
     } catch (e) {
       return null;
     }
+  }
+
+  set amount(num? value) {
+    rawData["amount"] = value;
   }
 
   String? get merchant_name {
@@ -111,6 +115,10 @@ class GetPayOutLink {
     }
   }
 
+  set merchant_name(String? value) {
+    rawData["merchant_name"] = value;
+  }
+
   String? get status {
     try {
       if (rawData["status"] is String == false) {
@@ -120,6 +128,10 @@ class GetPayOutLink {
     } catch (e) {
       return null;
     }
+  }
+
+  set status(String? value) {
+    rawData["status"] = value;
   }
 
   String? get expiration_timestamp {
@@ -133,6 +145,10 @@ class GetPayOutLink {
     }
   }
 
+  set expiration_timestamp(String? value) {
+    rawData["expiration_timestamp"] = value;
+  }
+
   String? get created {
     try {
       if (rawData["created"] is String == false) {
@@ -142,6 +158,10 @@ class GetPayOutLink {
     } catch (e) {
       return null;
     }
+  }
+
+  set created(String? value) {
+    rawData["created"] = value;
   }
 
   String? get email {
@@ -155,6 +175,10 @@ class GetPayOutLink {
     }
   }
 
+  set email(String? value) {
+    rawData["email"] = value;
+  }
+
   String? get payout_url {
     try {
       if (rawData["payout_url"] is String == false) {
@@ -166,11 +190,16 @@ class GetPayOutLink {
     }
   }
 
-  static GetPayOutLink create({
-    String? special_type,
+  set payout_url(String? value) {
+    rawData["payout_url"] = value;
+  }
+
+  static PayOutLink create({
+    bool schemeUtilsIsSetDefaultData = false,
+    String special_type = "payOutLink",
     String? id,
     String? external_id,
-    int? amount,
+    num? amount,
     String? merchant_name,
     String? status,
     String? expiration_timestamp,
@@ -178,8 +207,8 @@ class GetPayOutLink {
     String? email,
     String? payout_url,
   }) {
-    Map jsonData = GetPayOutLink.defaultData;
-    Map jsonCreate = {
+    // PayOutLink payOutLink = PayOutLink({
+    final Map payOutLink_data_create_json = {
       "@type": special_type,
       "id": id,
       "external_id": external_id,
@@ -192,41 +221,15 @@ class GetPayOutLink {
       "payout_url": payout_url,
     };
 
-    jsonCreate.forEach((key, value) {
-      try {
-        if (value != null) {
-          jsonData[key] = value;
+    payOutLink_data_create_json.removeWhere((key, value) => value == null);
+
+    if (schemeUtilsIsSetDefaultData) {
+      defaultData.forEach((key, value) {
+        if (payOutLink_data_create_json.containsKey(key) == false) {
+          payOutLink_data_create_json[key] = value;
         }
-      } catch (e, stack) {
-        print("GetPayOutLink ${e.toString()}, ${stack.toString()}");
-      }
-    });
-    return GetPayOutLink(jsonData);
-  }
-
-  /// operator map data
-  operator [](key) {
-    return rawData[key];
-  }
-
-  /// operator map data
-  void operator []=(key, value) {
-    rawData[key] = value;
-  }
-
-  /// return original data json
-  Map toMap() {
-    return rawData;
-  }
-
-  /// return original data json
-  Map toJson() {
-    return rawData;
-  }
-
-  /// return string data encode json original data
-  @override
-  String toString() {
-    return json.encode(rawData);
+      });
+    }
+    return PayOutLink(payOutLink_data_create_json);
   }
 }

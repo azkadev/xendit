@@ -33,3 +33,5 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 <!-- END LICENSE --> */
 export "xendit_core.dart";
+
+export "api/api.dart";

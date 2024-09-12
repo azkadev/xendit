@@ -14,6 +14,7 @@
 analyzer:
   errors:
     non_constant_identifier_names: ignore
+    unnecessary_brace_in_string_interps: ignore
 include: package:lints/recommended.yaml
 
 # Uncomment the following section to specify additional rules.
